@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0625FBEB14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */; };
+		0625FBED14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */; };
+		0625FBEF14AF7F4E00AF3C04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEE14AF7F4E00AF3C04 /* CoreGraphics.framework */; };
+		0625FBF514AF7F4E00AF3C04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0625FBF314AF7F4E00AF3C04 /* InfoPlist.strings */; };
+		0625FBF714AF7F4E00AF3C04 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FBF614AF7F4E00AF3C04 /* main.m */; };
+		0625FBFB14AF7F4E00AF3C04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FBFA14AF7F4E00AF3C04 /* AppDelegate.m */; };
+		0625FBFE14AF7F4E00AF3C04 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0625FBFC14AF7F4E00AF3C04 /* MainStoryboard.storyboard */; };
+		0625FC0114AF7F4E00AF3C04 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC0014AF7F4E00AF3C04 /* MasterViewController.m */; };
+		0625FC0414AF7F4E00AF3C04 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC0314AF7F4E00AF3C04 /* DetailViewController.m */; };
+		0625FC0C14AF7F4E00AF3C04 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FC0B14AF7F4E00AF3C04 /* SenTestingKit.framework */; };
+		0625FC0D14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */; };
+		0625FC0E14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */; };
+		0625FC1614AF7F4E00AF3C04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0625FC1414AF7F4E00AF3C04 /* InfoPlist.strings */; };
+		0625FC1914AF7F4E00AF3C04 /* kesikesiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC1814AF7F4E00AF3C04 /* kesikesiTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0625FC0F14AF7F4E00AF3C04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0625FBDD14AF7F4E00AF3C04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0625FBE514AF7F4E00AF3C04;
+			remoteInfo = kesikesi;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0625FBE614AF7F4E00AF3C04 /* kesikesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kesikesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0625FBEE14AF7F4E00AF3C04 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0625FBF214AF7F4E00AF3C04 /* kesikesi-Info.plist */ = {isa = PBXFileReference; path = "kesikesi-Info.plist"; sourceTree = "<group>"; };
+		0625FBF414AF7F4E00AF3C04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0625FBF614AF7F4E00AF3C04 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0625FBF814AF7F4E00AF3C04 /* kesikesi-Prefix.pch */ = {isa = PBXFileReference; path = "kesikesi-Prefix.pch"; sourceTree = "<group>"; };
+		0625FBF914AF7F4E00AF3C04 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		0625FBFA14AF7F4E00AF3C04 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0625FBFD14AF7F4E00AF3C04 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0625FBFF14AF7F4E00AF3C04 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		0625FC0014AF7F4E00AF3C04 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		0625FC0214AF7F4E00AF3C04 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		0625FC0314AF7F4E00AF3C04 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0625FC0A14AF7F4E00AF3C04 /* kesikesiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kesikesiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0625FC0B14AF7F4E00AF3C04 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		0625FC1314AF7F4E00AF3C04 /* kesikesiTests-Info.plist */ = {isa = PBXFileReference; path = "kesikesiTests-Info.plist"; sourceTree = "<group>"; };
+		0625FC1514AF7F4E00AF3C04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0625FC1714AF7F4E00AF3C04 /* kesikesiTests.h */ = {isa = PBXFileReference; path = kesikesiTests.h; sourceTree = "<group>"; };
+		0625FC1814AF7F4E00AF3C04 /* kesikesiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kesikesiTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0625FBE314AF7F4E00AF3C04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FBEB14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */,
+				0625FBED14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */,
+				0625FBEF14AF7F4E00AF3C04 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0625FC0614AF7F4E00AF3C04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FC0C14AF7F4E00AF3C04 /* SenTestingKit.framework in Frameworks */,
+				0625FC0D14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */,
+				0625FC0E14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0625FBDB14AF7F4E00AF3C04 = {
+			isa = PBXGroup;
+			children = (
+				0625FBF014AF7F4E00AF3C04 /* kesikesi */,
+				0625FC1114AF7F4E00AF3C04 /* kesikesiTests */,
+				0625FBE914AF7F4E00AF3C04 /* Frameworks */,
+				0625FBE714AF7F4E00AF3C04 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0625FBE714AF7F4E00AF3C04 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0625FBE614AF7F4E00AF3C04 /* kesikesi.app */,
+				0625FC0A14AF7F4E00AF3C04 /* kesikesiTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0625FBE914AF7F4E00AF3C04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */,
+				0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */,
+				0625FBEE14AF7F4E00AF3C04 /* CoreGraphics.framework */,
+				0625FC0B14AF7F4E00AF3C04 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0625FBF014AF7F4E00AF3C04 /* kesikesi */ = {
+			isa = PBXGroup;
+			children = (
+				0625FBF914AF7F4E00AF3C04 /* AppDelegate.h */,
+				0625FBFA14AF7F4E00AF3C04 /* AppDelegate.m */,
+				0625FBFC14AF7F4E00AF3C04 /* MainStoryboard.storyboard */,
+				0625FBFF14AF7F4E00AF3C04 /* MasterViewController.h */,
+				0625FC0014AF7F4E00AF3C04 /* MasterViewController.m */,
+				0625FC0214AF7F4E00AF3C04 /* DetailViewController.h */,
+				0625FC0314AF7F4E00AF3C04 /* DetailViewController.m */,
+				0625FBF114AF7F4E00AF3C04 /* Supporting Files */,
+			);
+			path = kesikesi;
+			sourceTree = "<group>";
+		};
+		0625FBF114AF7F4E00AF3C04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0625FBF214AF7F4E00AF3C04 /* kesikesi-Info.plist */,
+				0625FBF314AF7F4E00AF3C04 /* InfoPlist.strings */,
+				0625FBF614AF7F4E00AF3C04 /* main.m */,
+				0625FBF814AF7F4E00AF3C04 /* kesikesi-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0625FC1114AF7F4E00AF3C04 /* kesikesiTests */ = {
+			isa = PBXGroup;
+			children = (
+				0625FC1714AF7F4E00AF3C04 /* kesikesiTests.h */,
+				0625FC1814AF7F4E00AF3C04 /* kesikesiTests.m */,
+				0625FC1214AF7F4E00AF3C04 /* Supporting Files */,
+			);
+			path = kesikesiTests;
+			sourceTree = "<group>";
+		};
+		0625FC1214AF7F4E00AF3C04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0625FC1314AF7F4E00AF3C04 /* kesikesiTests-Info.plist */,
+				0625FC1414AF7F4E00AF3C04 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0625FBE514AF7F4E00AF3C04 /* kesikesi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0625FC1C14AF7F4E00AF3C04 /* Build configuration list for PBXNativeTarget "kesikesi" */;
+			buildPhases = (
+				0625FBE214AF7F4E00AF3C04 /* Sources */,
+				0625FBE314AF7F4E00AF3C04 /* Frameworks */,
+				0625FBE414AF7F4E00AF3C04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kesikesi;
+			productName = kesikesi;
+			productReference = 0625FBE614AF7F4E00AF3C04 /* kesikesi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0625FC0914AF7F4E00AF3C04 /* kesikesiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0625FC1F14AF7F4E00AF3C04 /* Build configuration list for PBXNativeTarget "kesikesiTests" */;
+			buildPhases = (
+				0625FC0514AF7F4E00AF3C04 /* Sources */,
+				0625FC0614AF7F4E00AF3C04 /* Frameworks */,
+				0625FC0714AF7F4E00AF3C04 /* Resources */,
+				0625FC0814AF7F4E00AF3C04 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0625FC1014AF7F4E00AF3C04 /* PBXTargetDependency */,
+			);
+			name = kesikesiTests;
+			productName = kesikesiTests;
+			productReference = 0625FC0A14AF7F4E00AF3C04 /* kesikesiTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0625FBDD14AF7F4E00AF3C04 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = atrac613.io;
+			};
+			buildConfigurationList = 0625FBE014AF7F4E00AF3C04 /* Build configuration list for PBXProject "kesikesi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0625FBDB14AF7F4E00AF3C04;
+			productRefGroup = 0625FBE714AF7F4E00AF3C04 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0625FBE514AF7F4E00AF3C04 /* kesikesi */,
+				0625FC0914AF7F4E00AF3C04 /* kesikesiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0625FBE414AF7F4E00AF3C04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FBF514AF7F4E00AF3C04 /* InfoPlist.strings in Resources */,
+				0625FBFE14AF7F4E00AF3C04 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0625FC0714AF7F4E00AF3C04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FC1614AF7F4E00AF3C04 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0625FC0814AF7F4E00AF3C04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0625FBE214AF7F4E00AF3C04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FBF714AF7F4E00AF3C04 /* main.m in Sources */,
+				0625FBFB14AF7F4E00AF3C04 /* AppDelegate.m in Sources */,
+				0625FC0114AF7F4E00AF3C04 /* MasterViewController.m in Sources */,
+				0625FC0414AF7F4E00AF3C04 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0625FC0514AF7F4E00AF3C04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0625FC1914AF7F4E00AF3C04 /* kesikesiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0625FC1014AF7F4E00AF3C04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0625FBE514AF7F4E00AF3C04 /* kesikesi */;
+			targetProxy = 0625FC0F14AF7F4E00AF3C04 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0625FBF314AF7F4E00AF3C04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0625FBF414AF7F4E00AF3C04 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0625FBFC14AF7F4E00AF3C04 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0625FBFD14AF7F4E00AF3C04 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		0625FC1414AF7F4E00AF3C04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0625FC1514AF7F4E00AF3C04 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0625FC1A14AF7F4E00AF3C04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0625FC1B14AF7F4E00AF3C04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0625FC1D14AF7F4E00AF3C04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
+				INFOPLIST_FILE = "kesikesi/kesikesi-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0625FC1E14AF7F4E00AF3C04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
+				INFOPLIST_FILE = "kesikesi/kesikesi-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0625FC2014AF7F4E00AF3C04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kesikesi.app/kesikesi";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
+				INFOPLIST_FILE = "kesikesiTests/kesikesiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		0625FC2114AF7F4E00AF3C04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kesikesi.app/kesikesi";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
+				INFOPLIST_FILE = "kesikesiTests/kesikesiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0625FBE014AF7F4E00AF3C04 /* Build configuration list for PBXProject "kesikesi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0625FC1A14AF7F4E00AF3C04 /* Debug */,
+				0625FC1B14AF7F4E00AF3C04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0625FC1C14AF7F4E00AF3C04 /* Build configuration list for PBXNativeTarget "kesikesi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0625FC1D14AF7F4E00AF3C04 /* Debug */,
+				0625FC1E14AF7F4E00AF3C04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0625FC1F14AF7F4E00AF3C04 /* Build configuration list for PBXNativeTarget "kesikesiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0625FC2014AF7F4E00AF3C04 /* Debug */,
+				0625FC2114AF7F4E00AF3C04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0625FBDD14AF7F4E00AF3C04 /* Project object */;
+}
