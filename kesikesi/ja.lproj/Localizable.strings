@@ -1,0 +1,36 @@
+"SCRATCH" = "スクラッチして消す";
+"ACCELEROMETER1" = "傾きで消す";
+"ACCELEROMETER2" = "端末を振って消す";
+"SOUND_LEVEL" = "音の大きさで消す";
+"BARCODE" = "バーコード(QR)で消す";
+
+"BARCODE_INVALID" = "バーコード(QR)が正しくありません。";
+
+"RUB_WITH_YOUR_FINGER" = "隠したい場所を指でこすってください。";
+
+"CHOOSE_FROM_LIBRARY" = "ライブラリから選択";
+"TAKE_PHOTO" = "写真を撮影する";
+
+"UPLOAD_FAILED" = "登録失敗しました。もう一度やり直してください。";
+"CONNECTION_FAILURE" = "通信に失敗しました。もう一度やり直してください。";
+
+"DONE" = "完了";
+
+"NOT_FOUND" = "写真が見つかりませんでした。";
+
+"HOME" = "Home";
+
+"OPTION" = "オプション";
+"TWEET" = "ツイート";
+"COMMENT" = "コメント";
+
+"TWEET_MESSAGE" = "写真をちょっと秘密にしたよ。";
+"TWEET_CANCELED" = "ツイートをキャンセルしました。";
+"TWEET_SENDED" = "ツイートを送信しました。";
+"CAN_NOT_TWEET" = "ツイートできませんでした。";
+
+"CHOOSE_MASK_TYPE" = "マスクの種類を選んでください。";
+
+"CLEAR_MASK_CONFIRM" = "本当にマスクを削除しますか？";
+"CANCEL" = "キャンセル";
+"DELETE" = "削除";

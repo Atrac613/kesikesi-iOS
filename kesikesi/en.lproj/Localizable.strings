@@ -1,0 +1,36 @@
+"SCRATCH" = "Erase by scratching";
+"ACCELEROMETER1" = "Erase by tilting";
+"ACCELEROMETER2" = "Erase by shaking your device";
+"SOUND_LEVEL" = "Erase by the loudness of sound";
+"BARCODE" = "Erase by barcode";
+
+"BARCODE_INVALID" = "The barcode is incorrect.";
+
+"RUB_WITH_YOUR_FINGER" = "Rub with your finger the area that you want to hide.";
+
+"CHOOSE_FROM_LIBRARY" = "Choose from Library";
+"TAKE_PHOTO" = "Take Photo";
+
+"UPLOAD_FAILED" = "Upload failed. Please try again.";
+"CONNECTION_FAILURE" = "Connection failure. Please try again.";
+
+"DONE" = "Done";
+
+"NOT_FOUND" = "Photo not found.";
+
+"HOME" = "Home";
+
+"OPTION" = "Option";
+"TWEET" = "Tweet";
+"COMMENT" = "Comment";
+
+"TWEET_MESSAGE" = "Turn your photos into a little secret.";
+"TWEET_CANCELED" = "Tweet canceled.";
+"TWEET_SENDED" = "Tweet sended.";
+"CAN_NOT_TWEET" = "You can not tweet.";
+
+"CHOOSE_MASK_TYPE" = "Choose mask type.";
+
+"CLEAR_MASK_CONFIRM" = "Are you sure you want to delete mask?";
+"CANCEL" = "Cancel";
+"DELETE" = "Delete";

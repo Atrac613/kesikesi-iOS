@@ -2,20 +2,59 @@
 //  AppDelegate.m
 //  kesikesi
 //
-//  Created by 修 野口 on 1/1/12.
+//  Created by Osamu Noguchi on 1/1/12.
 //  Copyright (c) 2012 atrac613.io. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "RootSchemeViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize imageSource;
+@synthesize originalImage;
+@synthesize maskImage;
+@synthesize maskMode;
+@synthesize accessCode;
+@synthesize operationQueue;
+@synthesize imageKey;
+@synthesize kService;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // operation queue
+	self.operationQueue = [[NSOperationQueue alloc] init];
+	[self.operationQueue setMaxConcurrentOperationCount:1];
+    
+    self.kService = [[KesiKesiService alloc] init];
+    
     // Override point for customization after application launch.
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSLog(@"Host: %@", [url host]);
+    NSLog(@"Path: %@", [url path]);
+    
+    //NSString *host = @"www.kesikesi.me";
+    NSString *path = [url path];
+    
+    if ([[path substringFromIndex:1] length] == 6) {
+        NSLog(@"AppDelegate -> IMAGE_KEY: %@", [path substringFromIndex:1]);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[path substringFromIndex:1] forKey:@"IMAGE_KEY"];
+        [defaults synchronize];
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+        RootSchemeViewController *rootSchemeViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RootSchemeView"];
+        
+        [(UINavigationController *)self.window.rootViewController pushViewController:rootSchemeViewController animated:NO];
+        
+        return YES;
+    }
+    
+    return NO;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
