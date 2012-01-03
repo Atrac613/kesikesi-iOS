@@ -46,7 +46,7 @@
     
     [self.navigationItem setTitle:@"KesiKesi"];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"DONE", @"Done") style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"CLOSE", @"") style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed)];
     
     NSLog(@"maskMode: %@", maskMode);
     NSLog(@"accessCode: %@", accessCode);
@@ -92,12 +92,7 @@
         accel.updateInterval = 0.2f;
         moveSpeed = 0.f;
     } else if ([maskMode isEqualToString:@"barcode"]) {
-        scanButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [scanButton setFrame:CGRectMake(120, 350, 80, 40)];
-        [scanButton setTitle:@"Scan" forState:UIControlStateNormal];
-        //[scanButton setAlpha:0.5f];
-        [scanButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:scanButton];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"SCAN", @"") style:UIBarButtonItemStylePlain target:self action:@selector(scanButtonPressed)];
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString([maskMode uppercaseString], @"") delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -341,7 +336,7 @@
             [UIView setAnimationDelegate:self];
             
             [maskImage setAlpha:0.f];
-            [scanButton setAlpha:0.f];
+            self.navigationItem.rightBarButtonItem.enabled = NO;
             
             [UIView commitAnimations];
         } else {

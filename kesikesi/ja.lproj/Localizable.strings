@@ -15,6 +15,7 @@
 "CONNECTION_FAILURE" = "通信に失敗しました。もう一度やり直してください。";
 
 "DONE" = "完了";
+"CLOSE" = "閉じる";
 
 "NOT_FOUND" = "写真が見つかりませんでした。";
 
@@ -34,3 +35,5 @@
 "CLEAR_MASK_CONFIRM" = "本当にマスクを削除しますか？";
 "CANCEL" = "キャンセル";
 "DELETE" = "削除";
+
+"SCAN" = "スキャン";
