@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
 #import "PendingView.h"
 #import "ZBarReaderViewController.h"
 
-@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate> {
+@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate> {
     IBOutlet UIWebView *webView;
     PendingView *pendingView;
+    
+    IBOutlet UIBarButtonItem *actionButton;
     
     NSString *pickerMode;
     
@@ -26,6 +32,8 @@
 
 @property (nonatomic, retain) UIWebView *webView;
 @property (nonatomic, retain) PendingView *pendingView;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 
 @property (nonatomic, retain) NSString *pickerMode;
 
@@ -48,6 +56,10 @@
 - (void)showLibraryView;
 - (void)showCameraView;
 
+- (void)showExportView;
+
 - (NSDictionary *)getMaskModeJsonArray:(NSString*)imageKey;
+
+- (void)displayText:(NSString *)text;
 
 @end

@@ -27,7 +27,7 @@
 
 "TWEET_MESSAGE" = "Turn your photos into a little secret.";
 "TWEET_CANCELED" = "Tweet canceled.";
-"TWEET_SENDED" = "Tweet sended.";
+"TWEET_SENT" = "Tweet sent.";
 "CAN_NOT_TWEET" = "You can not tweet.";
 
 "CHOOSE_MASK_TYPE" = "Choose mask type.";
@@ -36,5 +36,9 @@
 "CANCEL" = "Cancel";
 "DELETE" = "Delete";
 
-
 "SCAN" = "Scan";
+
+"AUTHENTICATION" = "Authentication";
+
+"OPEN_IN_SAFARI" = "Open in Safari";
+"EMAIL_LINK" = "E-mail link";

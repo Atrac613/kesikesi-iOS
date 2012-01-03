@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FingerPaintViewController.h"
 #import "ScratchViewController.h"
+#import "AuthViewController.h"
 #import "NSString+MD5.h"
 #import "ImageUtil.h"
 
@@ -17,6 +18,7 @@
 
 @synthesize webView;
 @synthesize pendingView;
+@synthesize actionButton;
 @synthesize pickerMode;
 @synthesize imagePickerMode;
 @synthesize pickerView;
@@ -93,9 +95,9 @@
     
     if (!LOGIN) {
         if (TARGET_IPHONE_SIMULATOR) {
-            url = @"http://localhost:8089/page/welcome";
+            url = @"http://localhost:8089/page/welcome?version=2";
         } else {
-            url = @"http://kesikesi-hr.appspot.com/page/welcome";
+            url = @"http://kesikesi-hr.appspot.com/page/welcome?version=2";
         }
         
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
@@ -104,6 +106,8 @@
             [self refreshMyArchives];
         }
     }
+    
+    NSLog(@"reload...");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -150,9 +154,9 @@
     NSString *url;
     
     if (TARGET_IPHONE_SIMULATOR) {
-        url = @"http://localhost:8089/page/archives";
+        url = @"http://localhost:8089/page/archives?version=2";
     } else {
-        url = @"https://kesikesi-hr.appspot.com/page/archives";
+        url = @"https://kesikesi-hr.appspot.com/page/archives?version=2";
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
@@ -201,6 +205,121 @@
     imagePicker.delegate = self;
     
     [self presentModalViewController:imagePicker animated:YES];
+}
+
+- (IBAction)exportButtonPressed:(id)sender {
+    [self showExportView];
+}
+
+- (void)showExportView {
+	pickerViewPopup = [[UIActionSheet alloc] initWithTitle:nil
+                                                  delegate:self
+                                         cancelButtonTitle:NSLocalizedString(@"CANCEL", @"")
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:NSLocalizedString(@"OPEN_IN_SAFARI", @""), NSLocalizedString(@"EMAIL_LINK", @""), NSLocalizedString(@"TWEET", @""), nil];
+    [pickerViewPopup showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *host =[webView.request.URL host]; 
+    NSNumber *port = [webView.request.URL port];
+    NSString *path = [webView.request.URL path];
+    
+    NSString *url;
+    if (port) {
+        url = [NSString stringWithFormat:@"http://%@:%@%@", host, port, path];
+    } else {
+        url = [NSString stringWithFormat:@"http://www.kesikesi.me%@", path];
+    }
+    
+    if (buttonIndex == 0) {
+        // Open in Safari
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    } else if (buttonIndex == 1) {
+        // E-Mail Link
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = self;
+        
+        [picker setSubject:@"KesiKesi"];
+        
+        // Fill out the email body text
+        NSString *emailBody = url;
+        [picker setMessageBody:emailBody isHTML:NO];
+        
+        [self presentModalViewController:picker animated:YES];
+    } else if (buttonIndex == 2) {
+        // Tweet
+        NSString *tweet = [NSString stringWithFormat:@"%@ %@ via @kesikesi_me", NSLocalizedString(@"TWEET_MESSAGE", @""), url];
+        
+        if ([TWTweetComposeViewController canSendTweet]) {
+            // Set up the built-in twitter composition view controller.
+            TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+            
+            // Set the initial tweet text. See the framework for additional properties that can be set.
+            [tweetViewController setInitialText:tweet];
+            
+            // Create the completion handler block.
+            [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
+                NSString *output;
+                
+                switch (result) {
+                    case TWTweetComposeViewControllerResultCancelled:
+                        // The cancel button was tapped.
+                        output = NSLocalizedString(@"TWEET_CANCELED", @"");
+                        break;
+                    case TWTweetComposeViewControllerResultDone:
+                        // The tweet was sent.
+                        output = NSLocalizedString(@"TWEET_SENT", @"");
+                        break;
+                    default:
+                        break;
+                }
+                
+                [self performSelectorOnMainThread:@selector(displayText:) withObject:output waitUntilDone:NO];
+                
+                // Dismiss the tweet composition view controller.
+                [self dismissModalViewControllerAnimated:YES];
+            }];
+            
+            // Present the tweet composition view controller modally.
+            [self presentModalViewController:tweetViewController animated:YES];
+        } else {
+            [self displayText:NSLocalizedString(@"CAN_NOT_TWEET", @"")];
+        }
+    }
+}
+
+- (void)displayText:(NSString *)text {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
+{	
+	NSString *message;
+	// Notifies users about errors associated with the interface
+	switch (result)
+	{
+		case MFMailComposeResultCancelled:
+			message = @"Result: canceled";
+			break;
+		case MFMailComposeResultSaved:
+			message = @"Result: saved";
+			break;
+		case MFMailComposeResultSent:
+			message = @"Result: sent";
+			break;
+		case MFMailComposeResultFailed:
+			message = @"Result: failed";
+			break;
+		default:
+			message = @"Result: not sent";
+			break;
+	}
+    
+    NSLog(@"MFMail Message: %@", message);
+    
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)showPickerView {
@@ -290,10 +409,17 @@
         [webView setOpaque:NO];
     }
     
-	NSRange hostResult	= [url rangeOfString:@"www.kesikesi.me"];
+    NSRange hostResult	= [url rangeOfString:@"www.kesikesi.me"];
     
     if ([schema isEqualToString:@"ksks"] && hostResult.location != NSNotFound) {
-        if ([url rangeOfString:@"logout/success"].location != NSNotFound) {
+        if ([url rangeOfString:@"page/auth"].location != NSNotFound) {
+            NSLog(@"Auth action detected.");
+            
+            AuthViewController *authViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AuthView"];
+            [self presentModalViewController:authViewController animated:YES];
+            
+            return NO;
+        } else if ([url rangeOfString:@"logout/success"].location != NSNotFound) {
             NSLog(@"Logout action detected.");
             
             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"LOGIN"];
@@ -323,6 +449,14 @@
             NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(synchronizeGetMaskModeJsonArray:) object:params];
             [operation setQueuePriority:NSOperationQueuePriorityHigh];
             [appDelegate.operationQueue addOperation:operation];
+            
+            return NO;
+        } else if ([url rangeOfString:@"actionButton/on"].location != NSNotFound) {
+            [actionButton setEnabled:YES];
+            
+            return NO;
+        } else if ([url rangeOfString:@"actionButton/off"].location != NSNotFound) {
+            [actionButton setEnabled:NO];
             
             return NO;
         }

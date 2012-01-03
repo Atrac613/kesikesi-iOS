@@ -47,7 +47,7 @@
     self.tmpImageKey = @"";
     self.comment = @"";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleDone target:self action:@selector(uploadButtonPressed)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed)];
     
     [self performSelectorOnMainThread:@selector(backgroundUploadAction) withObject:nil waitUntilDone:YES];
 }
@@ -65,7 +65,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)uploadButtonPressed {
+- (void)doneButtonPressed {
     [self showPendingView];
     
     // Close Software Keyboard.
@@ -379,7 +379,7 @@
                     break;
                 case TWTweetComposeViewControllerResultDone:
                     // The tweet was sent.
-                    output = NSLocalizedString(@"TWEET_SENDED", @"");
+                    output = NSLocalizedString(@"TWEET_SENT", @"");
                     break;
                 default:
                     break;

@@ -27,7 +27,7 @@
 
 "TWEET_MESSAGE" = "写真をちょっと秘密にしたよ。";
 "TWEET_CANCELED" = "ツイートをキャンセルしました。";
-"TWEET_SENDED" = "ツイートを送信しました。";
+"TWEET_SENT" = "ツイートを送信しました。";
 "CAN_NOT_TWEET" = "ツイートできませんでした。";
 
 "CHOOSE_MASK_TYPE" = "マスクの種類を選んでください。";
@@ -37,3 +37,10 @@
 "DELETE" = "削除";
 
 "SCAN" = "スキャン";
+
+"AUTHENTICATION" = "認証";
+
+"OPEN_IN_SAFARI" = "Safari で開く";
+"EMAIL_LINK" = "リンクをメールで送信";
+
+"NEXT" = "次へ";

@@ -87,6 +87,10 @@
 		0625FCEB14B2C21200AF3C04 /* btn5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FCE914B2C21100AF3C04 /* btn5.png */; };
 		0625FCEC14B2C21200AF3C04 /* btn5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FCEA14B2C21100AF3C04 /* btn5@2x.png */; };
 		0625FCEE14B2C45A00AF3C04 /* mask5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FCED14B2C45A00AF3C04 /* mask5.png */; };
+		0625FCF514B3146900AF3C04 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FCF414B3146700AF3C04 /* AuthViewController.m */; };
+		0625FCF814B3266000AF3C04 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FCF614B3266000AF3C04 /* home.png */; };
+		0625FCF914B3266000AF3C04 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FCF714B3266000AF3C04 /* home@2x.png */; };
+		0625FCFF14B33DD800AF3C04 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FCFE14B33DD800AF3C04 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +225,11 @@
 		0625FCE914B2C21100AF3C04 /* btn5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn5.png; sourceTree = "<group>"; };
 		0625FCEA14B2C21100AF3C04 /* btn5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn5@2x.png"; sourceTree = "<group>"; };
 		0625FCED14B2C45A00AF3C04 /* mask5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask5.png; sourceTree = "<group>"; };
+		0625FCF314B3146500AF3C04 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
+		0625FCF414B3146700AF3C04 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		0625FCF614B3266000AF3C04 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		0625FCF714B3266000AF3C04 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		0625FCFE14B33DD800AF3C04 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +254,7 @@
 				0625FCE114B185DC00AF3C04 /* libopencv_imgproc.a in Frameworks */,
 				0625FCE214B185DC00AF3C04 /* libopencv_objdetect.a in Frameworks */,
 				0625FCE814B194B200AF3C04 /* CoreImage.framework in Frameworks */,
+				0625FCFF14B33DD800AF3C04 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +296,7 @@
 		0625FBE914AF7F4E00AF3C04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0625FCFE14B33DD800AF3C04 /* MessageUI.framework */,
 				0625FCE714B194B200AF3C04 /* CoreImage.framework */,
 				0625FCD714B091A300AF3C04 /* Twitter.framework */,
 				0625FCD514B015C100AF3C04 /* CoreVideo.framework */,
@@ -327,6 +338,8 @@
 				0625FCBF14AFFC8C00AF3C04 /* UploadViewController.m */,
 				0625FCD214B00C7700AF3C04 /* RootSchemeViewController.h */,
 				0625FCD314B00C7800AF3C04 /* RootSchemeViewController.m */,
+				0625FCF314B3146500AF3C04 /* AuthViewController.h */,
+				0625FCF414B3146700AF3C04 /* AuthViewController.m */,
 				0625FBF114AF7F4E00AF3C04 /* Supporting Files */,
 			);
 			path = kesikesi;
@@ -507,6 +520,8 @@
 		0625FC7514AF834000AF3C04 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0625FCF614B3266000AF3C04 /* home.png */,
+				0625FCF714B3266000AF3C04 /* home@2x.png */,
 				0625FC7614AF834000AF3C04 /* btn0.png */,
 				0625FC7714AF834000AF3C04 /* btn0@2x.png */,
 				0625FC7814AF834000AF3C04 /* btn1.png */,
@@ -654,6 +669,8 @@
 				0625FCEB14B2C21200AF3C04 /* btn5.png in Resources */,
 				0625FCEC14B2C21200AF3C04 /* btn5@2x.png in Resources */,
 				0625FCEE14B2C45A00AF3C04 /* mask5.png in Resources */,
+				0625FCF814B3266000AF3C04 /* home.png in Resources */,
+				0625FCF914B3266000AF3C04 /* home@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +723,7 @@
 				0625FCBD14AF8B5000AF3C04 /* BarcodeScanModalViewController.m in Sources */,
 				0625FCC014AFFC8D00AF3C04 /* UploadViewController.m in Sources */,
 				0625FCD414B00C7900AF3C04 /* RootSchemeViewController.m in Sources */,
+				0625FCF514B3146900AF3C04 /* AuthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

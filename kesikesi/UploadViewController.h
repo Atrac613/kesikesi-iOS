@@ -35,7 +35,7 @@
 @property (nonatomic) BOOL doUpload;
 @property (nonatomic) BOOL doTweet;
 
-- (void)uploadButtonPressed;
+- (void)doneButtonPressed;
 - (void)backgroundUploadAction;
 - (void)uploadAction:(NSArray*)params;
 - (NSString*)data2str:(NSData*)data;
