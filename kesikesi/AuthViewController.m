@@ -55,7 +55,7 @@
     if (TARGET_IPHONE_SIMULATOR) {
         url = @"http://localhost:8089/page/auth";
     } else {
-        url = @"https://kesikesi-me.appspot.com/page/auth";
+        url = @"https://kesikesi-hr.appspot.com/page/auth";
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];

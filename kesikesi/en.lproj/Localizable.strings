@@ -42,3 +42,13 @@
 
 "OPEN_IN_SAFARI" = "Open in Safari";
 "EMAIL_LINK" = "E-mail link";
+
+"NEXT" = "Next";
+
+"INVALID_URL_EXPORT" = "This page cannot export.";
+
+"EMAIL_CANCELED" = "E-Mail canceled.";
+"EMAIL_SENT" = "E-Mail sent.";
+"EMAIL_FAILED" = "E-Mail failed.";
+"EMAIL_NOT_SENT" = "E-Mail not sent.";
+"EMAIL_SAVED" = "E-Mail saved.";

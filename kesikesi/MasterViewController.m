@@ -208,7 +208,18 @@
 }
 
 - (IBAction)exportButtonPressed:(id)sender {
-    [self showExportView];
+    NSArray *validHost = [[NSArray alloc] initWithObjects:@"localhost", @"kesikesi-hr.appspot.com", @"www.kesikesi.me", nil];
+    NSString *host =[webView.request.URL host];
+    
+    if ([validHost containsObject:host]) {
+        [self showExportView];
+    } else {
+        NSLog(@"invalid host: %@", host);
+        
+        [actionButton setEnabled:NO];
+        
+        [self displayText:NSLocalizedString(@"INVALID_URL_EXPORT", @"")];
+    }
 }
 
 - (void)showExportView {
@@ -221,7 +232,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *host =[webView.request.URL host]; 
+    NSString *host =[webView.request.URL host];
     NSNumber *port = [webView.request.URL port];
     NSString *path = [webView.request.URL path];
     
@@ -249,7 +260,8 @@
         [self presentModalViewController:picker animated:YES];
     } else if (buttonIndex == 2) {
         // Tweet
-        NSString *tweet = [NSString stringWithFormat:@"%@ %@ via @kesikesi_me", NSLocalizedString(@"TWEET_MESSAGE", @""), url];
+        NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+        NSString *tweet = [NSString stringWithFormat:@"%@ %@ via @kesikesi_me", title, url];
         
         if ([TWTweetComposeViewController canSendTweet]) {
             // Set up the built-in twitter composition view controller.
@@ -301,23 +313,23 @@
 	switch (result)
 	{
 		case MFMailComposeResultCancelled:
-			message = @"Result: canceled";
+			message = NSLocalizedString(@"EMAIL_CANCELED", @"");
 			break;
 		case MFMailComposeResultSaved:
-			message = @"Result: saved";
+			message = NSLocalizedString(@"EMAIL_SAVED", @"");
 			break;
 		case MFMailComposeResultSent:
-			message = @"Result: sent";
+			message = NSLocalizedString(@"EMAIL_SENT", @"");
 			break;
 		case MFMailComposeResultFailed:
-			message = @"Result: failed";
+			message = NSLocalizedString(@"EMAIL_FAILED", @"");
 			break;
 		default:
-			message = @"Result: not sent";
+			message = NSLocalizedString(@"EMAIL_NOT_SENT", @"");
 			break;
 	}
     
-    NSLog(@"MFMail Message: %@", message);
+    [self displayText:message];
     
 	[self dismissModalViewControllerAnimated:YES];
 }
