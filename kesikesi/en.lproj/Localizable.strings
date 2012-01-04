@@ -47,8 +47,8 @@
 
 "INVALID_URL_EXPORT" = "This page cannot export.";
 
-"EMAIL_CANCELED" = "E-Mail canceled.";
-"EMAIL_SENT" = "E-Mail sent.";
-"EMAIL_FAILED" = "E-Mail failed.";
-"EMAIL_NOT_SENT" = "E-Mail not sent.";
-"EMAIL_SAVED" = "E-Mail saved.";
+"EMAIL_CANCELED" = "E-mail canceled.";
+"EMAIL_SENT" = "E-mail sent.";
+"EMAIL_FAILED" = "E-mail failed.";
+"EMAIL_NOT_SENT" = "E-mail not sent.";
+"EMAIL_SAVED" = "E-mail saved.";
