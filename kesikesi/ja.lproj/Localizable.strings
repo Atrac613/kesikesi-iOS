@@ -47,8 +47,8 @@
 
 "INVALID_URL_EXPORT" = "このページはエクスポートできません。";
 
-"EMAIL_CANCELED" = "E-Mail をキャンセルしました。";
-"EMAIL_SENT" = "E-Mail を送信しました。";
-"EMAIL_FAILED" = "E-Mail の送信に失敗しました。";
-"EMAIL_NOT_SENT" = "E-Mail は送信されませんでした。";
-"EMAIL_SAVED" = "E-Mail を保存しました。";
+"EMAIL_CANCELED" = "メールをキャンセルしました。";
+"EMAIL_SENT" = "メールを送信しました。";
+"EMAIL_FAILED" = "メールの送信に失敗しました。";
+"EMAIL_NOT_SENT" = "メールは送信されませんでした。";
+"EMAIL_SAVED" = "メールを保存しました。";
