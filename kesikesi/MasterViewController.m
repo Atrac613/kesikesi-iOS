@@ -466,8 +466,6 @@
                 }
             }
             
-            NSLog(@"%@", params);
-            
             return NO;
         }
     }
