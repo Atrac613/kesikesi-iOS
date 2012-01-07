@@ -30,6 +30,10 @@
         [image drawAtPoint:p];
         p.x += 70 + 5; // 70(width) + 5(margin)
     }
+
+    [[UIColor redColor] set];
+    CGRect frame = CGRectMake(selectedIndex_ * (70 + 5) + 5 , 6, 60, 60);
+    UIRectFrame(frame);
 }
 
 - (void)dealloc

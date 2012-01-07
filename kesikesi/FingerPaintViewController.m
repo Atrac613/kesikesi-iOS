@@ -25,6 +25,7 @@
 @synthesize pickerToolbar;
 @synthesize pickerViewPopup;
 @synthesize maskModeArray;
+@synthesize maskTypeArray;
 @synthesize scrollView;
 @synthesize frameThumnailView;
 @synthesize currentMaskId;
@@ -72,6 +73,8 @@
     
     maskModeArray = [[NSArray alloc] initWithObjects:@"scratch", @"accelerometer1", @"accelerometer2", @"sound_level", @"barcode", nil];
     
+    maskTypeArray = [[NSArray alloc] initWithObjects:@"black", @"mosaic", @"caution", @"zebra", @"note", nil];
+    
     alertView = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"RUB_WITH_YOUR_FINGER", @"Rub with your finger the area that you want to hide.") delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
     
@@ -85,8 +88,7 @@
     }
     
     self.frameThumnailView.imageList = imageList;
-    CGRect rect = CGRectMake(10, 0, (70+5)*6
-                             + 13, 70);
+    CGRect rect = CGRectMake(10, 0, (70+5)*6 + 13, 70);
     self.frameThumnailView.frame = rect;
     self.scrollView.contentSize = rect.size;
     
@@ -185,6 +187,7 @@
     [self makeImage];
     
     appDelegate.maskMode = @"scratch";
+    appDelegate.maskType = [maskTypeArray objectAtIndex:currentMaskId];
     appDelegate.accessCode = @"";
     
     UploadViewController *uploadViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UploadView"];

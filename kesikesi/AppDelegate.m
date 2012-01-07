@@ -16,6 +16,7 @@
 @synthesize originalImage;
 @synthesize maskImage;
 @synthesize maskMode;
+@synthesize maskType;
 @synthesize accessCode;
 @synthesize operationQueue;
 @synthesize imageKey;

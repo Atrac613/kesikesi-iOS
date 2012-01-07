@@ -31,6 +31,7 @@
 	UIActionSheet *pickerViewPopup;
     
     NSArray *maskModeArray;
+    NSArray *maskTypeArray;
     
     NSInteger currentMaskId;
     UIImage *currentMask;
@@ -50,6 +51,7 @@
 @property (nonatomic, retain) UIToolbar *pickerToolbar;
 @property (nonatomic, retain) UIActionSheet *pickerViewPopup;
 @property (nonatomic, retain) NSArray *maskModeArray;
+@property (nonatomic, retain) NSArray *maskTypeArray;
 @property (nonatomic) NSInteger currentMaskId;
 @property (nonatomic, retain) UIImage *currentMask;
 @property (nonatomic, retain) NSString *alertMode;

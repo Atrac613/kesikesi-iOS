@@ -49,10 +49,13 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"HOME", @"HOME") style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonPressed)];
     
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    
     [webView setBackgroundColor:[UIColor clearColor]];
     [webView setOpaque:NO];
     
-    refreshArchive = YES;
+    refreshArchive = NO;
     
     imagePickerMode = [[NSArray alloc] initWithObjects:@"CHOOSE_FROM_LIBRARY", @"TAKE_PHOTO", nil];
     
@@ -65,6 +68,17 @@
         [self.navigationController.navigationBar setBackgroundImage:navBGImage
                                                       forBarMetrics:UIBarMetricsDefault];
     }
+    
+    webView.delegate = self;
+    
+    NSString *url;
+    if (TARGET_IPHONE_SIMULATOR) {
+        url = @"http://localhost:8089/page/v2/welcome";
+    } else {
+        url = @"https://kesikesi-hr.appspot.com/page/v2/welcome";
+    }
+    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
 - (void)viewDidUnload
@@ -82,32 +96,10 @@
     
     webView.delegate = self;
     
-    NSString *url;
-    
-    BOOL LOGIN = YES;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![[defaults valueForKey:@"LOGIN"] boolValue]) {
-        LOGIN = NO;
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    } else {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+    NSLog(@"imageKye: %@", appDelegate.imageKey);
+    if (refreshArchive || [appDelegate.imageKey length] > 0) {
+        [self refreshMyArchives];
     }
-    
-    if (!LOGIN) {
-        if (TARGET_IPHONE_SIMULATOR) {
-            url = @"http://localhost:8089/page/welcome?version=2";
-        } else {
-            url = @"http://kesikesi-hr.appspot.com/page/welcome?version=2";
-        }
-        
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-    } else {
-        if (refreshArchive || [appDelegate.imageKey length] > 0) {
-            [self refreshMyArchives];
-        }
-    }
-    
-    NSLog(@"reload...");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -148,15 +140,14 @@
 }
 
 - (void)refreshMyArchives {
-    NSLog(@"refresh");
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSString *url;
     
     if (TARGET_IPHONE_SIMULATOR) {
-        url = @"http://localhost:8089/page/archives?version=2";
+        url = @"http://localhost:8089/page/v2/archives";
     } else {
-        url = @"https://kesikesi-hr.appspot.com/page/archives?version=2";
+        url = @"https://kesikesi-hr.appspot.com/page/v2/archives";
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
@@ -209,9 +200,11 @@
 
 - (IBAction)exportButtonPressed:(id)sender {
     NSArray *validHost = [[NSArray alloc] initWithObjects:@"localhost", @"kesikesi-hr.appspot.com", @"www.kesikesi.me", nil];
-    NSString *host =[webView.request.URL host];
     
-    if ([validHost containsObject:host]) {
+    NSString *host = [webView.request.URL host];
+    NSString *path = [webView.request.URL path];
+    
+    if ([validHost containsObject:host] && [[path substringFromIndex:1] length] == 6) {
         [self showExportView];
     } else {
         NSLog(@"invalid host: %@", host);
@@ -235,6 +228,7 @@
     NSString *host =[webView.request.URL host];
     NSNumber *port = [webView.request.URL port];
     NSString *path = [webView.request.URL path];
+    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
     NSString *url;
     if (port) {
@@ -251,7 +245,7 @@
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
         
-        [picker setSubject:@"KesiKesi"];
+        [picker setSubject:title];
         
         // Fill out the email body text
         NSString *emailBody = url;
@@ -260,7 +254,6 @@
         [self presentModalViewController:picker animated:YES];
     } else if (buttonIndex == 2) {
         // Tweet
-        NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
         NSString *tweet = [NSString stringWithFormat:@"%@ %@ via @kesikesi_me", title, url];
         
         if ([TWTweetComposeViewController canSendTweet]) {
@@ -431,24 +424,6 @@
             [self presentModalViewController:authViewController animated:YES];
             
             return NO;
-        } else if ([url rangeOfString:@"logout/success"].location != NSNotFound) {
-            NSLog(@"Logout action detected.");
-            
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"LOGIN"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            self.navigationItem.rightBarButtonItem.enabled = NO;
-            
-            return NO;
-        } else if ([url rangeOfString:@"login/success"].location != NSNotFound) {
-            NSLog(@"Login action detected.");
-            
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"LOGIN"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            self.navigationItem.rightBarButtonItem.enabled = YES;
-            
-            return NO;
         } else if ([[path substringFromIndex:1] length] == 6) {
             NSLog(@"KesiKesi action detected.");
             
@@ -463,12 +438,35 @@
             [appDelegate.operationQueue addOperation:operation];
             
             return NO;
-        } else if ([url rangeOfString:@"actionButton/on"].location != NSNotFound) {
-            [actionButton setEnabled:YES];
+        } else if ([url rangeOfString:@"buttonStatus"].location != NSNotFound) {
+            NSString *query = [baseUrl query];
             
-            return NO;
-        } else if ([url rangeOfString:@"actionButton/off"].location != NSNotFound) {
-            [actionButton setEnabled:NO];
+            NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+            for (NSString *param in [query componentsSeparatedByString:@"&"]) {
+                NSArray *elts = [param componentsSeparatedByString:@"="];
+                if([elts count] < 2) continue;
+                [params setObject:[elts objectAtIndex:1] forKey:[elts objectAtIndex:0]];
+            }
+            
+            if ([params objectForKey:@"actionButton"]) {
+                if ([[params objectForKey:@"actionButton"] isEqual:@"on"]) {
+                    [actionButton setEnabled:YES];
+                } else {
+                    [actionButton setEnabled:NO];
+                }
+            }
+            
+            if ([params objectForKey:@"navigationButton"]) {
+                if ([[params objectForKey:@"navigationButton"] isEqual:@"on"]) {
+                    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+                    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+                } else {
+                    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+                    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+                }
+            }
+            
+            NSLog(@"%@", params);
             
             return NO;
         }

@@ -21,6 +21,8 @@
     PendingView *pendingView;
     UIAlertView *alertView;
     
+    UIBackgroundTaskIdentifier bgTask;
+    
     BOOL doUpload;
     BOOL doTweet;
 }

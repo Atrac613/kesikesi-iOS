@@ -68,6 +68,9 @@
 - (void)doneButtonPressed {
     [self showPendingView];
     
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    
     // Close Software Keyboard.
     UITextField *textField = (UITextField*)[self.view viewWithTag:1001];
     [textField resignFirstResponder];
@@ -91,16 +94,23 @@
     
     NSLog(@"backgroundUploadAction");
     
+    UIApplication *app = [UIApplication sharedApplication];
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{ 
+        [app endBackgroundTask:bgTask]; 
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
     UIImage *originalImage = appDelegate.originalImage;
     UIImage *maskImage = appDelegate.maskImage;
     NSString *maskMode = appDelegate.maskMode;
+    NSString *maskType = appDelegate.maskType;
     NSString *accessCode = appDelegate.accessCode;
     
     NSString *urlString;
     if (TARGET_IPHONE_SIMULATOR) {
-        urlString = @"http://localhost:8089/api/upload_image";
+        urlString = @"http://localhost:8089/api/v2/upload_image";
     } else {
-        urlString = @"https://kesikesi-hr.appspot.com/api/upload_image";
+        urlString = @"https://kesikesi-hr.appspot.com/api/v2/upload_image";
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -121,6 +131,12 @@
     
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"mask_mode"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@", maskMode] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"mask_type"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@", maskType] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"access_code"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -147,9 +163,9 @@
     
     NSString *urlString;
     if (TARGET_IPHONE_SIMULATOR) {
-        urlString = @"http://localhost:8089/api/upload";
+        urlString = @"http://localhost:8089/api/v2/upload";
     } else {
-        urlString = @"https://kesikesi-hr.appspot.com/api/upload";
+        urlString = @"https://kesikesi-hr.appspot.com/api/v2/upload";
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -193,7 +209,7 @@
     
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    httpResponseData=nil;
+    httpResponseData = nil;
     
     [self hidePendingView];
     
@@ -215,6 +231,12 @@
                 appDelegate.imageKey = [jsonTmpDic valueForKey:@"image_key"];
                 NSLog(@"ImageKey: %@", appDelegate.imageKey);
                 
+                UIApplication *app = [UIApplication sharedApplication];
+                if (bgTask != UIBackgroundTaskInvalid) {
+                    [app endBackgroundTask:bgTask]; 
+                    bgTask = UIBackgroundTaskInvalid;
+                }
+                
                 if (doTweet) {
                     NSString *tweetMessage;
                     if ([comment length] > 0) {
@@ -224,6 +246,10 @@
                     }
                     [self showTweetView:[NSString stringWithFormat:@"%@ http://www.kesikesi.me/%@ via @kesikesi_me", tweetMessage, appDelegate.imageKey]];
                 } else {
+                    // no need?
+                    [self.navigationItem setHidesBackButton:NO];
+                    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+                    
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }
             }

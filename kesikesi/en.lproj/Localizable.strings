@@ -30,7 +30,7 @@
 "TWEET_SENT" = "Tweet sent.";
 "CAN_NOT_TWEET" = "You can not tweet.";
 
-"CHOOSE_MASK_TYPE" = "Choose mask type.";
+"CHOOSE_MASK_TYPE" = "Choose a mask type.";
 
 "CLEAR_MASK_CONFIRM" = "Are you sure you want to delete mask?";
 "CANCEL" = "Cancel";
