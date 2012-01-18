@@ -10,8 +10,9 @@
 #import "PendingView.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
+#import "FBConnect.h"
 
-@interface UploadViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface UploadViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, FBSessionDelegate, FBRequestDelegate> {
     IBOutlet UITableView *tableView;
     
     NSString *tmpImageKey;
@@ -25,6 +26,7 @@
     
     BOOL doUpload;
     BOOL doTweet;
+    BOOL doFacebook;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -36,6 +38,7 @@
 
 @property (nonatomic) BOOL doUpload;
 @property (nonatomic) BOOL doTweet;
+@property (nonatomic) BOOL doFacebook;
 
 - (void)doneButtonPressed;
 - (void)backgroundUploadAction;
@@ -47,5 +50,7 @@
 
 - (void)displayTextAndExit:(NSString *)text;
 - (void)showTweetView:(NSString*)tweet;
+
+- (void)sendFacebook:(NSString*)url;
 
 @end

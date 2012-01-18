@@ -13,8 +13,9 @@
 #import <Accounts/Accounts.h>
 #import "PendingView.h"
 #import "ZBarReaderViewController.h"
+#import "FBConnect.h"
 
-@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate> {
+@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, FBSessionDelegate, FBRequestDelegate> {
     IBOutlet UIWebView *webView;
     PendingView *pendingView;
     
@@ -61,5 +62,7 @@
 - (NSDictionary *)getMaskModeJsonArray:(NSString*)imageKey;
 
 - (void)displayText:(NSString *)text;
+
+- (void)sendFacebook:(NSString*)url;
 
 @end

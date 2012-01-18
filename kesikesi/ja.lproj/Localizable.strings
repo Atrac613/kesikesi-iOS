@@ -24,6 +24,7 @@
 "OPTION" = "オプション";
 "TWEET" = "ツイート";
 "COMMENT" = "コメント";
+"COMMENT_AND_SHARE" = "コメントと共有";
 
 "TWEET_MESSAGE" = "写真をちょっと秘密にしたよ。";
 "TWEET_CANCELED" = "ツイートをキャンセルしました。";
@@ -42,6 +43,7 @@
 
 "OPEN_IN_SAFARI" = "Safari で開く";
 "EMAIL_LINK" = "リンクをメールで送信";
+"FACEBOOK_SHARE" = "Facebook でシェア";
 
 "NEXT" = "次へ";
 
@@ -52,3 +54,9 @@
 "EMAIL_FAILED" = "メールの送信に失敗しました。";
 "EMAIL_NOT_SENT" = "メールは送信されませんでした。";
 "EMAIL_SAVED" = "メールを保存しました。";
+
+"FACEBOOK_SHARE_SENT" = "Facebook で共有しました。";
+"FACEBOOK_SHARE_FAILED" = "Facebook の共有に失敗しました。";
+
+"TWITTER" = "Twitter";
+"FACEBOOK" = "Facebook";

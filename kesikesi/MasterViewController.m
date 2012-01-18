@@ -220,7 +220,7 @@
                                                   delegate:self
                                          cancelButtonTitle:NSLocalizedString(@"CANCEL", @"")
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:NSLocalizedString(@"OPEN_IN_SAFARI", @""), NSLocalizedString(@"EMAIL_LINK", @""), NSLocalizedString(@"TWEET", @""), nil];
+                                         otherButtonTitles:NSLocalizedString(@"OPEN_IN_SAFARI", @""), NSLocalizedString(@"EMAIL_LINK", @""), NSLocalizedString(@"TWEET", @""), NSLocalizedString(@"FACEBOOK_SHARE", @""), nil];
     [pickerViewPopup showInView:self.view];
 }
 
@@ -290,6 +290,28 @@
             [self presentModalViewController:tweetViewController animated:YES];
         } else {
             [self displayText:NSLocalizedString(@"CAN_NOT_TWEET", @"")];
+        }
+    } else if (buttonIndex == 3) {
+        // Facebook Share
+        
+        [self showPendingView];
+        
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        appDelegate.facebook = [[Facebook alloc] initWithAppId:@"132918306826766" andDelegate:self];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults objectForKey:@"FBAccessTokenKey"] 
+            && [defaults objectForKey:@"FBExpirationDateKey"]) {
+            appDelegate.facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+            appDelegate.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+        }
+        
+        if (![appDelegate.facebook isSessionValid]) {
+            NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access",nil];
+            [appDelegate.facebook authorize:permissions];
+        } else {
+            [self sendFacebook:url];
         }
     }
 }
@@ -631,6 +653,66 @@
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
     }
+}
+
+- (void)sendFacebook:(NSString*)url {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate.facebook isSessionValid]) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys: url, @"url", nil];
+        
+        [appDelegate.facebook requestWithMethodName:@"links.post" andParams:params andHttpMethod:@"POST" andDelegate:self];
+    }
+}
+
+- (void)fbDidLogin {
+    NSLog(@"fbDidLogin");
+    
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[appDelegate.facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[appDelegate.facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
+    NSString *host =[webView.request.URL host];
+    NSNumber *port = [webView.request.URL port];
+    NSString *path = [webView.request.URL path];
+
+    NSString *url;
+    if (port) {
+        url = [NSString stringWithFormat:@"http://%@:%@%@", host, port, path];
+    } else {
+        url = [NSString stringWithFormat:@"http://www.kesikesi.me%@", path];
+    }
+    
+    [self sendFacebook:url];
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled {
+    NSLog(@"fbDidNotLogin");
+    
+    [self hidePendingView];
+}
+
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"request didReceiveResponse");
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result {
+    NSLog(@"request didLoad");
+    
+    [self hidePendingView];
+    
+    [self displayText:NSLocalizedString(@"FACEBOOK_SHARE_SENT", @"")];
+}
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
+    
+    [self hidePendingView];
+    
+    [self displayText:NSLocalizedString(@"FACEBOOK_SHARE_FAILED", @"")];
 }
 
 @end

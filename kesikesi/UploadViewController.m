@@ -20,6 +20,7 @@
 @synthesize comment;
 @synthesize doUpload;
 @synthesize doTweet;
+@synthesize doFacebook;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -237,6 +238,10 @@
                     bgTask = UIBackgroundTaskInvalid;
                 }
                 
+                if (doFacebook) {
+                    [self sendFacebook:[NSString stringWithFormat:@"http://www.kesikesi.me/%@", appDelegate.imageKey]];
+                }
+                
                 if (doTweet) {
                     NSString *tweetMessage;
                     if ([comment length] > 0) {
@@ -246,7 +251,6 @@
                     }
                     [self showTweetView:[NSString stringWithFormat:@"%@ http://www.kesikesi.me/%@ via @kesikesi_me", tweetMessage, appDelegate.imageKey]];
                 } else {
-                    // no need?
                     [self.navigationItem setHidesBackButton:NO];
                     [self.navigationItem.rightBarButtonItem setEnabled:YES];
                     
@@ -308,11 +312,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return NSLocalizedString(@"OPTION", @"");
+    return NSLocalizedString(@"COMMENT_AND_SHARE", @"");
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -341,12 +345,26 @@
         [cell.contentView addSubview:textField];
         
         cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
+    } else if (indexPath.row == 1) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(13, 5, 100, 30)];
-        label.text = NSLocalizedString(@"TWEET", @"");
+        label.text = NSLocalizedString(@"TWITTER", @"");
         label.backgroundColor = [UIColor clearColor];
         
         UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+        switchView.tag = 11001;
+        cell.accessoryView = switchView;
+        
+        [switchView setOn:NO animated:NO];
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        [cell.contentView addSubview:label];
+    } else {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(13, 5, 100, 30)];
+        label.text = NSLocalizedString(@"FACEBOOK", @"");
+        label.backgroundColor = [UIColor clearColor];
+        
+        UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+        switchView.tag = 11002;
         cell.accessoryView = switchView;
         
         [switchView setOn:NO animated:NO];
@@ -366,7 +384,29 @@
     UISwitch* switchControl = sender;
     NSLog(@"Tweet is %@", switchControl.on ? @"ON" : @"OFF");
     
-    doTweet = switchControl.on;
+    if (switchControl.tag == 11001) {
+        doTweet = switchControl.on;
+    } else {
+        doFacebook = switchControl.on;
+        
+        if (doFacebook) {
+            AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            appDelegate.facebook = [[Facebook alloc] initWithAppId:@"132918306826766" andDelegate:self];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults objectForKey:@"FBAccessTokenKey"] 
+                && [defaults objectForKey:@"FBExpirationDateKey"]) {
+                appDelegate.facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+                appDelegate.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+            }
+            
+            if (![appDelegate.facebook isSessionValid]) {
+                NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access",nil];
+                [appDelegate.facebook authorize:permissions];
+            }
+        }
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
@@ -422,6 +462,43 @@
     } else {
         [self displayTextAndExit:NSLocalizedString(@"CAN_NOT_TWEET", @"")];
     }
+}
+
+- (void)sendFacebook:(NSString*)url {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate.facebook isSessionValid]) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys: url, @"url", nil];
+        
+        [appDelegate.facebook requestWithMethodName:@"links.post" andParams:params andHttpMethod:@"POST" andDelegate:nil];
+    }
+}
+
+- (void)fbDidLogin {
+    NSLog(@"fbDidLogin");
+    
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[appDelegate.facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[appDelegate.facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled {
+    NSLog(@"fbDidNotLogin");
+}
+
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"request didReceiveResponse");
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result {
+    NSLog(@"request didLoad");
+}
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
 }
 
 @end

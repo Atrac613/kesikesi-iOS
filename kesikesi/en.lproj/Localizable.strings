@@ -24,6 +24,7 @@
 "OPTION" = "Option";
 "TWEET" = "Tweet";
 "COMMENT" = "Comment";
+"COMMENT_AND_SHARE" = "Comment & Share";
 
 "TWEET_MESSAGE" = "Turn your photos into a little secret.";
 "TWEET_CANCELED" = "Tweet canceled.";
@@ -42,6 +43,7 @@
 
 "OPEN_IN_SAFARI" = "Open in Safari";
 "EMAIL_LINK" = "E-mail link";
+"FACEBOOK_SHARE" = "Facebook Share";
 
 "NEXT" = "Next";
 
@@ -52,3 +54,9 @@
 "EMAIL_FAILED" = "E-mail failed.";
 "EMAIL_NOT_SENT" = "E-mail not sent.";
 "EMAIL_SAVED" = "E-mail saved.";
+
+"FACEBOOK_SHARE_SENT" = "Facebook share has been sent.";
+"FACEBOOK_SHARE_FAILED" = "Facebook share failed.";
+
+"TWITTER" = "Twitter";
+"FACEBOOK" = "Facebook";

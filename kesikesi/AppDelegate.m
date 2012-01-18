@@ -21,6 +21,7 @@
 @synthesize operationQueue;
 @synthesize imageKey;
 @synthesize kService;
+@synthesize facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,18 +42,22 @@
     //NSString *host = @"www.kesikesi.me";
     NSString *path = [url path];
     
-    if ([[path substringFromIndex:1] length] == 6) {
-        NSLog(@"AppDelegate -> IMAGE_KEY: %@", [path substringFromIndex:1]);
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[path substringFromIndex:1] forKey:@"IMAGE_KEY"];
-        [defaults synchronize];
-        
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
-        RootSchemeViewController *rootSchemeViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RootSchemeView"];
-        
-        [(UINavigationController *)self.window.rootViewController pushViewController:rootSchemeViewController animated:NO];
+    if ([[url scheme] isEqualToString:@"ksks"]) {
+        if ([[path substringFromIndex:1] length] == 6) {
+            NSLog(@"AppDelegate -> IMAGE_KEY: %@", [path substringFromIndex:1]);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[path substringFromIndex:1] forKey:@"IMAGE_KEY"];
+            [defaults synchronize];
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+            RootSchemeViewController *rootSchemeViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RootSchemeView"];
+            
+            [(UINavigationController *)self.window.rootViewController pushViewController:rootSchemeViewController animated:NO];
+        }
         
         return YES;
+    } else {
+        return [facebook handleOpenURL:url];
     }
     
     return NO;

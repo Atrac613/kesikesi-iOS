@@ -45,6 +45,7 @@
 			<string>www.kesikesi.me</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb132918306826766</string>
 				<string>ksks</string>
 			</array>
 		</dict>
