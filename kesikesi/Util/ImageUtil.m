@@ -19,8 +19,8 @@
     
     UIGraphicsBeginImageContext(targetSize);
     [canvasView.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage* resizedPhoto = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+    UIImage* resizedPhoto = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     return resizedPhoto;
 }

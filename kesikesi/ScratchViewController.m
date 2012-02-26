@@ -114,7 +114,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
     
     if ([maskMode isEqualToString:@"sound_level"]) {
         [soundTimer invalidate];
@@ -134,35 +134,35 @@
 }
 
 -(void)startActivityIndicator {
-	UIActivityIndicatorView *beforeActivityIndicator = (UIActivityIndicatorView *)[self.view viewWithTag:100];
-	
-	if (beforeActivityIndicator) {
-		[beforeActivityIndicator startAnimating];
-		
-		beforeActivityIndicator = nil;
-	} else {
-		UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
-													   initWithFrame:CGRectMake(0, 0, 32.0f, 32.0f)];
-		activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-		activityIndicator.frame	= CGRectMake(0, 0, 32.0f, 32.0f);
-		activityIndicator.tag = 100;
-		
-		[activityIndicator setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
-		activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
-		UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-		[self.view addSubview:activityIndicator];
-		
-		[activityIndicator startAnimating];
-	}
+    UIActivityIndicatorView *beforeActivityIndicator = (UIActivityIndicatorView *)[self.view viewWithTag:100];
+    
+    if (beforeActivityIndicator) {
+        [beforeActivityIndicator startAnimating];
+        
+        beforeActivityIndicator = nil;
+    } else {
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                                       initWithFrame:CGRectMake(0, 0, 32.0f, 32.0f)];
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        activityIndicator.frame    = CGRectMake(0, 0, 32.0f, 32.0f);
+        activityIndicator.tag = 100;
+        
+        [activityIndicator setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+        activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
+        UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [self.view addSubview:activityIndicator];
+        
+        [activityIndicator startAnimating];
+    }
 }
 
 -(void)stopActivityIndicator {
-	UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)[self.view viewWithTag:100];
-	
-	if (activityIndicator) {
-		[activityIndicator stopAnimating];
-		activityIndicator = nil;
-	}
+    UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)[self.view viewWithTag:100];
+    
+    if (activityIndicator) {
+        [activityIndicator stopAnimating];
+        activityIndicator = nil;
+    }
 }
 
 - (void)loadItems {
@@ -200,37 +200,37 @@
         return;
     }
     
-	UITouch *touch = [touches anyObject];
-	
-	lastPoint = [touch locationInView:self.view];
+    UITouch *touch = [touches anyObject];
+    
+    lastPoint = [touch locationInView:self.view];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if (![maskMode isEqualToString:@"scratch"]) {
         return;
     }
-	
-	UITouch *touch = [touches anyObject];	
-	CGPoint currentPoint = [touch locationInView:self.view];
-	
-	UIGraphicsBeginImageContext(CGSizeMake(320, 320));
-	[maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
+    
+    UITouch *touch = [touches anyObject];    
+    CGPoint currentPoint = [touch locationInView:self.view];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(320, 320));
+    [maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
     CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGImageAlphaNone);
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
-	CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 30.0);
-	CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 0, 0, 30);
-	CGContextBeginPath(UIGraphicsGetCurrentContext());
-	CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-	CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-	CGContextStrokePath(UIGraphicsGetCurrentContext());
-	maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	
-	lastPoint = currentPoint;
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 30.0);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1, 0, 0, 30);
+    CGContextBeginPath(UIGraphicsGetCurrentContext());
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    lastPoint = currentPoint;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	if (![maskMode isEqualToString:@"scratch"]) {
+    if (![maskMode isEqualToString:@"scratch"]) {
         return;
     }
     
@@ -239,11 +239,11 @@
 
 - (void)summaryVolume:(NSTimer*)timer
 {
-	[recorder updateMeters];
-	float pdB = [recorder peakPowerForChannel:0];
-	float adB = [recorder averagePowerForChannel:0];
-	
-	/*
+    [recorder updateMeters];
+    float pdB = [recorder peakPowerForChannel:0];
+    float adB = [recorder averagePowerForChannel:0];
+    
+    /*
      count++;
      if(count > 200)
      {
@@ -253,9 +253,9 @@
      [recorder record];
      }
      */
-	
-	float averageHeight = 1 + (adB /120 *2);
-	float peakHeight    = 1 + (pdB /120 *2);
+    
+    float averageHeight = 1 + (adB /120 *2);
+    float peakHeight    = 1 + (pdB /120 *2);
     
     
     [UIView beginAnimations:nil context:nil];
@@ -270,7 +270,7 @@
     
     [UIView commitAnimations];
     
-	NSLog(@"peakH:%f averageH:%f\n", peakHeight, averageHeight);
+    NSLog(@"peakH:%f averageH:%f\n", peakHeight, averageHeight);
 }
 
 - (void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)acceleration {

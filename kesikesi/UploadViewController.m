@@ -115,20 +115,20 @@
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:urlString]];
-	[request setHTTPMethod:@"POST"];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:YES];
-	
-	NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-	
-	NSData *maskImageData = UIImagePNGRepresentation(maskImage);
+    
+    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    NSData *maskImageData = UIImagePNGRepresentation(maskImage);
     NSData *originalImageData = UIImagePNGRepresentation(originalImage);
-	
-	NSMutableData *body = [NSMutableData data];
-	
-	[body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"mask_mode"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@", maskMode] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -145,18 +145,18 @@
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"original_image\"; filename=\"original_image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[NSData dataWithData:originalImageData]];
-	[body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:originalImageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-	[body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"mask_image\"; filename=\"mask_image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[NSData dataWithData:maskImageData]];
-	[body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	[request setHTTPBody:body];
+    [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"mask_image\"; filename=\"mask_image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:maskImageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-	[NSURLConnection connectionWithRequest:request delegate:self];	
+    [request setHTTPBody:body];
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];    
 }
 
 - (void)uploadAction:(NSArray*)params {
@@ -170,17 +170,17 @@
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:urlString]];
-	[request setHTTPMethod:@"POST"];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:YES];
-	
-	NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-	
-	NSMutableData *body = [NSMutableData data];
-	
-	[body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"tmp_image_key"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@", [params objectAtIndex:0]] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -189,10 +189,10 @@
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"comment"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@", [params objectAtIndex:1]] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	[request setHTTPBody:body];
     
-	[NSURLConnection connectionWithRequest:request delegate:self];	
+    [request setHTTPBody:body];
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];    
 }
 
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response {
@@ -214,12 +214,12 @@
     
     [self hidePendingView];
     
-	id jsonTmpDic = [returnString JSONValue];
+    id jsonTmpDic = [returnString JSONValue];
     
     NSLog(@"JSON: %@", jsonTmpDic);
-	
-	if ([jsonTmpDic isKindOfClass:[NSDictionary class]]) {
-		if ([[jsonTmpDic valueForKey:@"image_key"] isKindOfClass:[NSString class]]) {
+    
+    if ([jsonTmpDic isKindOfClass:[NSDictionary class]]) {
+        if ([[jsonTmpDic valueForKey:@"image_key"] isKindOfClass:[NSString class]]) {
             if ([[jsonTmpDic valueForKey:@"image_key"] length] == 32) {
                 self.tmpImageKey = [jsonTmpDic valueForKey:@"image_key"];
                 NSLog(@"TmpImageKey: %@", self.tmpImageKey);
@@ -259,12 +259,12 @@
             }
             
             return;
-		}
-	}
+        }
+    }
     
-	alertView = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"UPLOAD_FAILED", @"Upload failed.") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    alertView = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"UPLOAD_FAILED", @"Upload failed.") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-	[alertView show];
+    [alertView show];
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error {
@@ -272,8 +272,8 @@
     
     [self hidePendingView];
     
-	alertView = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"CONNECTION_FAILURE", @"Connection failure.") delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-	[alertView show];
+    alertView = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"CONNECTION_FAILURE", @"Connection failure.") delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alertView show];
 }
 
 - (void)connection:(NSURLConnection*)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
@@ -420,7 +420,7 @@
 }
 
 - (void)displayTextAndExit:(NSString *)text {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
     
     [self.navigationController popToRootViewControllerAnimated:YES];

@@ -25,8 +25,8 @@
     
     NSArray *imagePickerMode;
     UIPickerView *pickerView;
-	UIToolbar *pickerToolbar;
-	UIActionSheet *pickerViewPopup;
+    UIToolbar *pickerToolbar;
+    UIActionSheet *pickerViewPopup;
     
     BOOL refreshArchive;
 }

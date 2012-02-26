@@ -17,8 +17,8 @@
     UIImageView *maskImage;
     
     CGPoint lastPoint;
-	BOOL mouseSwiped;	
-	int mouseMoved;
+    BOOL mouseSwiped;    
+    int mouseMoved;
     
     NSString *maskMode;
     NSString *accessCode;

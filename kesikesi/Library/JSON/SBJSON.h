@@ -55,7 +55,7 @@
 /// Parse the string and return the represented object (or scalar)
 - (id)objectWithString:(id)value
            allowScalar:(BOOL)x
-    			 error:(NSError**)error;
+                 error:(NSError**)error;
 
 
 /// Return JSON representation of an array  or dictionary
@@ -69,7 +69,7 @@
 /// Return JSON representation (or fragment) for the given object
 - (NSString*)stringWithObject:(id)value
                   allowScalar:(BOOL)x
-    					error:(NSError**)error;
+                        error:(NSError**)error;
 
 
 @end

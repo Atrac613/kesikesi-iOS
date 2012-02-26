@@ -11,7 +11,7 @@
 
 
 @interface ImageUtil : NSObject {
-	
+    
 }
 
 -(UIImage *)getResizeImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize contentMode:(UIViewContentMode)contentMode;

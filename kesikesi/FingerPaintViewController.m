@@ -64,12 +64,12 @@
     imageView.image = appDelegate.imageSource;
     
     maskImage = [[UIImageView alloc] initWithImage:nil];
-	maskImage.frame = CGRectMake(0, 0, 320, 320);
+    maskImage.frame = CGRectMake(0, 0, 320, 320);
     maskImage.backgroundColor = [UIColor whiteColor];
     
     drawImage = [[UIImageView alloc] initWithImage:nil];
-	drawImage.frame = CGRectMake(0, 0, 320, 320);
-	mouseMoved = 0;
+    drawImage.frame = CGRectMake(0, 0, 320, 320);
+    mouseMoved = 0;
     
     maskModeArray = [[NSArray alloc] initWithObjects:@"scratch", @"accelerometer1", @"accelerometer2", @"sound_level", @"barcode", nil];
     
@@ -111,13 +111,13 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	//if ([self.view.subviews containsObject:pendingView]) {
+    //if ([self.view.subviews containsObject:pendingView]) {
     //    return;
     //}
-	mouseSwiped = NO;
-	UITouch *touch = [touches anyObject];
-	
-	lastPoint = [touch locationInView:self.view];
+    mouseSwiped = NO;
+    UITouch *touch = [touches anyObject];
+    
+    lastPoint = [touch locationInView:self.view];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -125,54 +125,54 @@
     //    return;
     //}
     
-	mouseSwiped = YES;
-	
-	UITouch *touch = [touches anyObject];	
-	CGPoint currentPoint = [touch locationInView:self.view];
-	
-	UIGraphicsBeginImageContext(self.maskImage.frame.size);
-	[maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
-	CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-	CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 10.0);
-	CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
-	CGContextBeginPath(UIGraphicsGetCurrentContext());
-	CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-	CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-	CGContextStrokePath(UIGraphicsGetCurrentContext());
-	maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+    mouseSwiped = YES;
+    
+    UITouch *touch = [touches anyObject];    
+    CGPoint currentPoint = [touch locationInView:self.view];
+    
+    UIGraphicsBeginImageContext(self.maskImage.frame.size);
+    [maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 10.0);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
+    CGContextBeginPath(UIGraphicsGetCurrentContext());
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     [self replaceDrawImage:currentMaskId];
-	
-	lastPoint = currentPoint;
-	
-	mouseMoved++;
-	
-	if (mouseMoved == 10) {
-		mouseMoved = 0;
-	}
+    
+    lastPoint = currentPoint;
+    
+    mouseMoved++;
+    
+    if (mouseMoved == 10) {
+        mouseMoved = 0;
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	//if ([self.view.subviews containsObject:pendingView]) {
+    //if ([self.view.subviews containsObject:pendingView]) {
     //    return;
     //}
-	
-	if(!mouseSwiped) {
-		UIGraphicsBeginImageContext(self.maskImage.frame.size);
-		[maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
-		CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-		CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
-		CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
-		CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-		CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-		CGContextStrokePath(UIGraphicsGetCurrentContext());
-		CGContextFlush(UIGraphicsGetCurrentContext());
-		maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
+    
+    if(!mouseSwiped) {
+        UIGraphicsBeginImageContext(self.maskImage.frame.size);
+        [maskImage.image drawInRect:CGRectMake(0, 0, 320, 320)];
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        CGContextFlush(UIGraphicsGetCurrentContext());
+        maskImage.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
         [self replaceDrawImage:currentMaskId];
-	}
+    }
 }
 
 - (void)cancelButtonPressed {
@@ -198,17 +198,17 @@
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     CGRect screenRect = CGRectMake(0, 0, 320, 320);
-	UIGraphicsBeginImageContext(screenRect.size);
+    UIGraphicsBeginImageContext(screenRect.size);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-	[[UIColor clearColor] set];
-	CGContextFillRect(ctx, screenRect);
-	
-	[self.drawImage.layer renderInContext:ctx];
-	
-	appDelegate.maskImage = UIGraphicsGetImageFromCurrentImageContext();
-	//UIImageWriteToSavedPhotosAlbum(maskImage, nil, nil, nil);
-	UIGraphicsEndImageContext();
+    [[UIColor clearColor] set];
+    CGContextFillRect(ctx, screenRect);
+    
+    [self.drawImage.layer renderInContext:ctx];
+    
+    appDelegate.maskImage = UIGraphicsGetImageFromCurrentImageContext();
+    //UIImageWriteToSavedPhotosAlbum(maskImage, nil, nil, nil);
+    UIGraphicsEndImageContext();
     
     /*
      screenRect = CGRectMake(0, 0, 320, 320);
@@ -221,41 +221,41 @@
      [self.imageView.layer renderInContext:ctx];
      */
     
-	appDelegate.originalImage = appDelegate.imageSource;
-	//UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
-	//UIGraphicsEndImageContext();
+    appDelegate.originalImage = appDelegate.imageSource;
+    //UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
+    //UIGraphicsEndImageContext();
 }
 
 - (void)showMaskModePickerView {
-	pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Mask mode"
+    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Mask mode"
                                                    delegate:self
                                           cancelButtonTitle:nil
                                      destructiveButtonTitle:nil
                                           otherButtonTitles:nil];
-	
-	pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,44,0,0)];
-	
-	pickerView.delegate = self;
-	pickerView.showsSelectionIndicator = YES;
-	
-	pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	pickerToolbar.barStyle = UIBarStyleBlackOpaque;
-	[pickerToolbar sizeToFit];
-	
-	NSMutableArray *barItems = [[NSMutableArray alloc] init];
-	
-	UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-	[barItems addObject:flexSpace];
-	
-	UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closePicker:)];
-	[barItems addObject:doneBtn];
     
-	[pickerToolbar setItems:barItems animated:YES];
-	
-	[pickerViewPopup addSubview:pickerToolbar];
-	[pickerViewPopup addSubview:pickerView];
-	[pickerViewPopup showInView:self.view];
-	[pickerViewPopup setBounds:CGRectMake(0,0,320, 464)];
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,44,0,0)];
+    
+    pickerView.delegate = self;
+    pickerView.showsSelectionIndicator = YES;
+    
+    pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [pickerToolbar sizeToFit];
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    [barItems addObject:flexSpace];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closePicker:)];
+    [barItems addObject:doneBtn];
+    
+    [pickerToolbar setItems:barItems animated:YES];
+    
+    [pickerViewPopup addSubview:pickerToolbar];
+    [pickerViewPopup addSubview:pickerView];
+    [pickerViewPopup showInView:self.view];
+    [pickerViewPopup setBounds:CGRectMake(0,0,320, 464)];
 }
 
 -(BOOL)closePicker:(id)sender
@@ -263,7 +263,7 @@
     NSString *maskMode = [self.maskModeArray objectAtIndex:[pickerView selectedRowInComponent:0]];
     NSLog(@"maskMode: %@", maskMode);
     
-	[pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
+    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
     
     if ([maskMode isEqualToString:@"barcode"]) {
         [self showBarcodeScanView];
@@ -274,7 +274,7 @@
         [self performSelectorOnMainThread:@selector(uploadFingerPaint:) withObject:params waitUntilDone:YES];
     }
     
-	return YES;
+    return YES;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -412,7 +412,7 @@
     [filter setDefaults];
     [filter setValue:inputImage forKey:@"inputImage"];
     [filter setValue:[NSNumber numberWithFloat:100.f] forKey:@"inputScale"];
-	[filter setValue:[CIVector vectorWithX:0 Y:0] forKey:@"inputCenter"];
+    [filter setValue:[CIVector vectorWithX:0 Y:0] forKey:@"inputCenter"];
 
     
     CIImage *outputImage = [filter valueForKey:@"outputImage"];
@@ -445,7 +445,7 @@
                        imageRef);
     CGContextRelease(contextRef);
     CGColorSpaceRelease(colorSpace);
-	
+    
     IplImage *ret = cvCreateImage(cvGetSize(iplimage), IPL_DEPTH_8U, 3);
     cvCvtColor(iplimage, ret, CV_RGBA2RGB);
     cvReleaseImage(&iplimage);
@@ -468,14 +468,14 @@
                                         NULL,
                                         false,
                                         kCGRenderingIntentDefault);
-	
+    
     UIImage *ret = [UIImage imageWithCGImage:imageRef];
     
     CGImageRelease(imageRef);
     CGDataProviderRelease(provider);
     CGColorSpaceRelease(colorSpace);
     CFRelease(data);
-	
+    
     return ret;
 }
 

@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
     [self.navigationItem setTitle:@"KesiKesi"];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(composeButtonPressed)];
@@ -109,7 +109,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
     
     webView.delegate = nil;
     [self hidePendingView];
@@ -117,7 +117,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-	[super viewDidDisappear:animated];
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -129,14 +129,14 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)wv {
     [self showPendingView];
-	
-	//self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)wv {	
+- (void)webViewDidFinishLoad:(UIWebView *)wv {    
     [self hidePendingView];
-	
-	//self.navigationItem.rightBarButtonItem.enabled = YES;	
+    
+    //self.navigationItem.rightBarButtonItem.enabled = YES;    
 }
 
 - (void)refreshMyArchives {
@@ -216,7 +216,7 @@
 }
 
 - (void)showExportView {
-	pickerViewPopup = [[UIActionSheet alloc] initWithTitle:nil
+    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:nil
                                                   delegate:self
                                          cancelButtonTitle:NSLocalizedString(@"CANCEL", @"")
                                     destructiveButtonTitle:nil
@@ -317,78 +317,78 @@
 }
 
 - (void)displayText:(NSString *)text {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
-{	
-	NSString *message;
-	// Notifies users about errors associated with the interface
-	switch (result)
-	{
-		case MFMailComposeResultCancelled:
-			message = NSLocalizedString(@"EMAIL_CANCELED", @"");
-			break;
-		case MFMailComposeResultSaved:
-			message = NSLocalizedString(@"EMAIL_SAVED", @"");
-			break;
-		case MFMailComposeResultSent:
-			message = NSLocalizedString(@"EMAIL_SENT", @"");
-			break;
-		case MFMailComposeResultFailed:
-			message = NSLocalizedString(@"EMAIL_FAILED", @"");
-			break;
-		default:
-			message = NSLocalizedString(@"EMAIL_NOT_SENT", @"");
-			break;
-	}
+{    
+    NSString *message;
+    // Notifies users about errors associated with the interface
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            message = NSLocalizedString(@"EMAIL_CANCELED", @"");
+            break;
+        case MFMailComposeResultSaved:
+            message = NSLocalizedString(@"EMAIL_SAVED", @"");
+            break;
+        case MFMailComposeResultSent:
+            message = NSLocalizedString(@"EMAIL_SENT", @"");
+            break;
+        case MFMailComposeResultFailed:
+            message = NSLocalizedString(@"EMAIL_FAILED", @"");
+            break;
+        default:
+            message = NSLocalizedString(@"EMAIL_NOT_SENT", @"");
+            break;
+    }
     
     [self displayText:message];
     
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)showPickerView {
-	pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Choose from..."
+    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:@"Choose from..."
                                                    delegate:self
                                           cancelButtonTitle:nil
                                      destructiveButtonTitle:nil
                                           otherButtonTitles:nil];
-	
-	pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,44,0,0)];
-	
-	pickerView.delegate = self;
-	pickerView.showsSelectionIndicator = YES;
-	
-	pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	pickerToolbar.barStyle = UIBarStyleBlackOpaque;
-	[pickerToolbar sizeToFit];
-	
-	NSMutableArray *barItems = [[NSMutableArray alloc] init];
-	
+    
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,44,0,0)];
+    
+    pickerView.delegate = self;
+    pickerView.showsSelectionIndicator = YES;
+    
+    pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [pickerToolbar sizeToFit];
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPicker:)];
-	[barItems addObject:cancelBtn];
+    [barItems addObject:cancelBtn];
     
-	UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-	[barItems addObject:flexSpace];
-	
-	UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closePicker:)];
-	[barItems addObject:doneBtn];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    [barItems addObject:flexSpace];
     
-	[pickerToolbar setItems:barItems animated:YES];
-	
-	[pickerViewPopup addSubview:pickerToolbar];
-	[pickerViewPopup addSubview:pickerView];
-	[pickerViewPopup showInView:self.view];
-	[pickerViewPopup setBounds:CGRectMake(0,0,320, 475)];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closePicker:)];
+    [barItems addObject:doneBtn];
+    
+    [pickerToolbar setItems:barItems animated:YES];
+    
+    [pickerViewPopup addSubview:pickerToolbar];
+    [pickerViewPopup addSubview:pickerView];
+    [pickerViewPopup showInView:self.view];
+    [pickerViewPopup setBounds:CGRectMake(0,0,320, 475)];
 }
 
 -(BOOL)cancelPicker:(id)sender
 {
-	[pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
+    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
     
-	return YES;
+    return YES;
 }
 
 -(BOOL)closePicker:(id)sender
@@ -396,7 +396,7 @@
     NSString *mode = [self.imagePickerMode objectAtIndex:[pickerView selectedRowInComponent:0]];
     NSLog(@"mode: %@", mode);
     
-	[pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
+    [pickerViewPopup dismissWithClickedButtonIndex:0 animated:YES];
     
     if ([mode isEqualToString:@"TAKE_PHOTO"]) {
         [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0.5f];
@@ -404,7 +404,7 @@
         [self performSelector:@selector(showLibraryView) withObject:nil afterDelay:0.5f];
     }
     
-	return YES;
+    return YES;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -420,12 +420,12 @@
 }
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSURL *baseUrl = [request URL];
-	NSString *url = [baseUrl absoluteString];
-	NSString *schema = [baseUrl scheme];
-	NSString *path = [baseUrl path];
-	
-	NSLog(@"path: %@", [path substringFromIndex:1]);
+    NSURL *baseUrl = [request URL];
+    NSString *url = [baseUrl absoluteString];
+    NSString *schema = [baseUrl scheme];
+    NSString *path = [baseUrl path];
+    
+    NSLog(@"path: %@", [path substringFromIndex:1]);
     
     // workaround.
     if ([url rangeOfString:@"google.com"].location != NSNotFound) {
@@ -436,7 +436,7 @@
         [webView setOpaque:NO];
     }
     
-    NSRange hostResult	= [url rangeOfString:@"www.kesikesi.me"];
+    NSRange hostResult    = [url rangeOfString:@"www.kesikesi.me"];
     
     if ([schema isEqualToString:@"ksks"] && hostResult.location != NSNotFound) {
         if ([url rangeOfString:@"page/auth"].location != NSNotFound) {
@@ -515,8 +515,8 @@
 }
 
 - (void)synchronizeGetMaskModeJsonArray:(NSArray*)params {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     NSString *imageKey = [params objectAtIndex:0];
     
     NSDictionary *maskMode = [self getMaskModeJsonArray:imageKey];
@@ -551,23 +551,23 @@
 }
 
 - (NSDictionary*)getMaskModeJsonArray:(NSString*)imageKey {
-	AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSDictionary *results = [[NSDictionary alloc] init];
     
-	@try {
-		id jsonTmpArray	= [appDelegate.kService getMaskModeJsonArray:imageKey];
-		
-		NSLog(@"jsonTmpArray: %@", jsonTmpArray);
-		
-		if ([jsonTmpArray isKindOfClass:[NSDictionary class]]) {
-			results =  jsonTmpArray;
-		}
-		
-		jsonTmpArray = nil;
-	} @catch (NSException *exception) {
-		NSLog(@"NSException: %@: %@", [exception name], [exception reason]);
-	}
+    @try {
+        id jsonTmpArray    = [appDelegate.kService getMaskModeJsonArray:imageKey];
+        
+        NSLog(@"jsonTmpArray: %@", jsonTmpArray);
+        
+        if ([jsonTmpArray isKindOfClass:[NSDictionary class]]) {
+            results =  jsonTmpArray;
+        }
+        
+        jsonTmpArray = nil;
+    } @catch (NSException *exception) {
+        NSLog(@"NSException: %@: %@", [exception name], [exception reason]);
+    }
     
     return results;
 }
@@ -601,7 +601,7 @@
             NSString *url = [baseUrl absoluteString];
             NSString *path = [baseUrl path];
             
-            NSRange hostResult	= [url rangeOfString:@"www.kesikesi.me"];
+            NSRange hostResult    = [url rangeOfString:@"www.kesikesi.me"];
             
             if (hostResult.location != NSNotFound && [[path substringFromIndex:1] length] == 6) {
                 NSLog(@"kesikesi.me Detected.");

@@ -85,8 +85,8 @@
 
 
 - (void)synchronizeGetMaskModeJsonArray:(NSArray*)params {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     NSString *imageKey = [params objectAtIndex:0];
     
     NSDictionary *maskMode = [self getMaskModeJsonArray:imageKey];
@@ -121,23 +121,23 @@
 }
 
 - (NSDictionary*)getMaskModeJsonArray:(NSString*)imageKey {
-	AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSDictionary *results = [[NSDictionary alloc] init];
     
-	@try {
-		id jsonTmpArray	= [appDelegate.kService getMaskModeJsonArray:imageKey];
-		
-		NSLog(@"jsonTmpArray: %@", jsonTmpArray);
-		
-		if ([jsonTmpArray isKindOfClass:[NSDictionary class]]) {
-			results =  jsonTmpArray;
-		}
-		
-		jsonTmpArray = nil;
-	} @catch (NSException *exception) {
-		NSLog(@"NSException: %@: %@", [exception name], [exception reason]);
-	}
+    @try {
+        id jsonTmpArray    = [appDelegate.kService getMaskModeJsonArray:imageKey];
+        
+        NSLog(@"jsonTmpArray: %@", jsonTmpArray);
+        
+        if ([jsonTmpArray isKindOfClass:[NSDictionary class]]) {
+            results =  jsonTmpArray;
+        }
+        
+        jsonTmpArray = nil;
+    } @catch (NSException *exception) {
+        NSLog(@"NSException: %@: %@", [exception name], [exception reason]);
+    }
     
     return results;
 }

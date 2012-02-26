@@ -64,27 +64,27 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)wv {
     [self showPendingView];
-	
-	//self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)wv {	
+- (void)webViewDidFinishLoad:(UIWebView *)wv {    
     [self hidePendingView];
-	
-	//self.navigationItem.rightBarButtonItem.enabled = YES;	
+    
+    //self.navigationItem.rightBarButtonItem.enabled = YES;    
 }
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-	NSURL *baseUrl = [request URL];
-	NSString *url = [baseUrl absoluteString];
-	NSString *schema = [baseUrl scheme];
-	NSString *path = [baseUrl path];
-	
-	NSLog(@"path: %@", [path substringFromIndex:1]);
+    NSURL *baseUrl = [request URL];
+    NSString *url = [baseUrl absoluteString];
+    NSString *schema = [baseUrl scheme];
+    NSString *path = [baseUrl path];
     
-	NSRange hostResult	= [url rangeOfString:@"www.kesikesi.me"];
+    NSLog(@"path: %@", [path substringFromIndex:1]);
+    
+    NSRange hostResult    = [url rangeOfString:@"www.kesikesi.me"];
     
     if ([schema isEqualToString:@"ksks"] && hostResult.location != NSNotFound) {
         if ([url rangeOfString:@"page/auth/success"].location != NSNotFound) {

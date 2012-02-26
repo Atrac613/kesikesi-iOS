@@ -26,8 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // operation queue
-	self.operationQueue = [[NSOperationQueue alloc] init];
-	[self.operationQueue setMaxConcurrentOperationCount:1];
+    self.operationQueue = [[NSOperationQueue alloc] init];
+    [self.operationQueue setMaxConcurrentOperationCount:1];
     
     self.kService = [[KesiKesiService alloc] init];
     
@@ -62,7 +62,7 @@
     
     return NO;
 }
-							
+                            
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

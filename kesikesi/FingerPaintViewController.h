@@ -18,17 +18,17 @@
     FrameView *frameThumnailView;
     
     CGPoint lastPoint;
-	UIImageView *drawImage;
+    UIImageView *drawImage;
     UIImageView *maskImage;
-	BOOL mouseSwiped;	
-	int mouseMoved;
+    BOOL mouseSwiped;    
+    int mouseMoved;
     
     UIAlertView *alertView;
     UIActivityIndicatorView *indicator;
     
     UIPickerView *pickerView;
-	UIToolbar *pickerToolbar;
-	UIActionSheet *pickerViewPopup;
+    UIToolbar *pickerToolbar;
+    UIActionSheet *pickerViewPopup;
     
     NSArray *maskModeArray;
     NSArray *maskTypeArray;
