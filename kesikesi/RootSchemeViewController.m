@@ -9,10 +9,9 @@
 #import "RootSchemeViewController.h"
 #import "AppDelegate.h"
 #import "ScratchViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation RootSchemeViewController
-
-@synthesize pendingView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +38,6 @@
     
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed)]];
     
-    [self showPendingView];
-    
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -58,6 +55,12 @@
         [operation setQueuePriority:NSOperationQueuePriorityHigh];
         [appDelegate.operationQueue addOperation:operation];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self showPendingView];
 }
 
 - (void)viewDidUnload
@@ -143,22 +146,11 @@
 }
 
 - (void)showPendingView {
-    if (pendingView == nil && ![self.view.subviews containsObject:pendingView]) {
-        pendingView = [[PendingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        pendingView.titleLabel.text = @"Please wait...";
-        pendingView.userInteractionEnabled = NO;
-        [self.view addSubview:pendingView];
-    }
-    
-    [pendingView showPendingView];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)hidePendingView {
-    if ([self.view.subviews containsObject:pendingView]) {
-        [pendingView hidePendingView];
-        
-        pendingView = nil;
-    }
+    [SVProgressHUD dismiss];
 }
 
 @end
