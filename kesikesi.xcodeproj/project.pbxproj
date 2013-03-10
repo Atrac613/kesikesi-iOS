@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */; };
 		0625FBEB14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */; };
 		0625FBED14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */; };
 		0625FBEF14AF7F4E00AF3C04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEE14AF7F4E00AF3C04 /* CoreGraphics.framework */; };
@@ -117,6 +118,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0625FBE614AF7F4E00AF3C04 /* kesikesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kesikesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -301,6 +303,7 @@
 		0625FBDB14AF7F4E00AF3C04 = {
 			isa = PBXGroup;
 			children = (
+				061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */,
 				0625FC2414AF7F8300AF3C04 /* icon@2x.png */,
 				0625FC2214AF7F7F00AF3C04 /* icon.png */,
 				0625FBF014AF7F4E00AF3C04 /* kesikesi */,
@@ -745,6 +748,7 @@
 				0625FCF814B3266000AF3C04 /* home.png in Resources */,
 				0625FCF914B3266000AF3C04 /* home@2x.png in Resources */,
 				65C49F0C14C672CA0051F5A3 /* FBDialog.bundle in Resources */,
+				061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,7 +905,7 @@
 					"-lz",
 				);
 				PROVISIONING_PROFILE = "71509653-F102-4018-8BF9-7F3F672BFF16";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71509653-F102-4018-8BF9-7F3F672BFF16";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C97524F-9AFE-41AA-85C5-9D85A78237A4";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/opencv_simulator/include\"";
 			};
@@ -940,7 +944,7 @@
 		0625FC1D14AF7F4E00AF3C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Osamu Noguchi (BQY439J4V9)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Osamu Noguchi (BQY439J4V9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
@@ -951,8 +955,7 @@
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71509653-F102-4018-8BF9-7F3F672BFF16";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71509653-F102-4018-8BF9-7F3F672BFF16";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7B821FC8-E174-4FF7-B34F-329CA19CB28B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -960,7 +963,7 @@
 		0625FC1E14AF7F4E00AF3C04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Osamu Noguchi";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
 				INFOPLIST_FILE = "kesikesi/kesikesi-Info.plist";
@@ -970,7 +973,6 @@
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F6E949D6-0849-43D0-B37F-7E97B04BCD3E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
