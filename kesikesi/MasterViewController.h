@@ -11,13 +11,11 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
-#import "PendingView.h"
 #import "ZBarReaderViewController.h"
 #import "FBConnect.h"
 
 @interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, FBSessionDelegate, FBRequestDelegate> {
     IBOutlet UIWebView *webView;
-    PendingView *pendingView;
     
     IBOutlet UIBarButtonItem *actionButton;
     
@@ -32,7 +30,6 @@
 }
 
 @property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, retain) PendingView *pendingView;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 
