@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PendingView.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import "FBConnect.h"
@@ -19,7 +18,6 @@
     NSString *comment;
     
     NSMutableData *httpResponseData;
-    PendingView *pendingView;
     UIAlertView *alertView;
     
     UIBackgroundTaskIdentifier bgTask;
@@ -33,7 +31,6 @@
 @property (nonatomic, retain) NSString *tmpImageKey;
 @property (nonatomic, retain) NSString *comment;
 @property (nonatomic, retain) NSMutableData *httpResponseData;
-@property (nonatomic, retain) PendingView *pendingView;
 @property (nonatomic, retain) UIAlertView *alertView;
 
 @property (nonatomic) BOOL doUpload;

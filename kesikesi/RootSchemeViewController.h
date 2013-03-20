@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PendingView.h"
 
 @interface RootSchemeViewController : UIViewController {
-    PendingView *pendingView;
+    
 }
-
-@property (nonatomic, retain) PendingView *pendingView;
 
 - (void)showPendingView;
 - (void)hidePendingView;

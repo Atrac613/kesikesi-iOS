@@ -9,11 +9,11 @@
 #import "UploadViewController.h"
 #import "AppDelegate.h"
 #import "JSON.h"
+#import "SVProgressHUD.h"
 
 @implementation UploadViewController
 
 @synthesize httpResponseData;
-@synthesize pendingView;
 @synthesize alertView;
 @synthesize tableView;
 @synthesize tmpImageKey;
@@ -119,7 +119,7 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:YES];
     
-    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
     
@@ -144,13 +144,13 @@
     [body appendData:[[NSString stringWithFormat:@"%@", accessCode] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"original_image\"; filename=\"original_image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Disposition: form-data; name=\"original_image\"; filename=\"original_image.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:originalImageData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"mask_image\"; filename=\"mask_image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Disposition: form-data; name=\"mask_image\"; filename=\"mask_image.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:maskImageData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -174,7 +174,7 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:YES];
     
-    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
     
@@ -262,6 +262,9 @@
         }
     }
     
+    [self.navigationItem setHidesBackButton:NO];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    
     alertView = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"UPLOAD_FAILED", @"Upload failed.") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     [alertView show];
@@ -277,11 +280,11 @@
 }
 
 - (void)connection:(NSURLConnection*)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-    if ([self.view.subviews containsObject:pendingView]) {
+    if ([SVProgressHUD isVisible]) {
         float progress = [[NSNumber numberWithInteger:totalBytesWritten] floatValue];
         float total = [[NSNumber numberWithInteger: totalBytesExpectedToWrite] floatValue];
-        pendingView.progressView.hidden = NO;
-        pendingView.progressView.progress = progress/total;
+        
+        [SVProgressHUD showProgress:progress/total status:@"Uploading..."];
     }
 }
 
@@ -290,21 +293,11 @@
 }
 
 - (void)showPendingView {
-    if (pendingView == nil && ![self.view.subviews containsObject:pendingView]) {
-        pendingView = [[PendingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        pendingView.titleLabel.text = @"Please wait...";
-        [self.view addSubview:pendingView];
-    }
-    
-    [pendingView showPendingView];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)hidePendingView {
-    if ([self.view.subviews containsObject:pendingView]) {
-        [pendingView hidePendingView];
-        
-        pendingView = nil;
-    }
+    [SVProgressHUD dismiss];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -348,6 +341,7 @@
     } else if (indexPath.row == 1) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(13, 5, 100, 30)];
         label.text = NSLocalizedString(@"TWITTER", @"");
+        label.font = [UIFont boldSystemFontOfSize:17.f];
         label.backgroundColor = [UIColor clearColor];
         
         UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -361,6 +355,7 @@
     } else {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(13, 5, 100, 30)];
         label.text = NSLocalizedString(@"FACEBOOK", @"");
+        label.font = [UIFont boldSystemFontOfSize:17.f];
         label.backgroundColor = [UIColor clearColor];
         
         UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];

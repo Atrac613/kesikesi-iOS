@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */; };
+		061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */; };
+		061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 061C3AFC16ECBC470070E60C /* SVProgressHUD.m */; };
 		0625FBEB14AF7F4E00AF3C04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */; };
 		0625FBED14AF7F4E00AF3C04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */; };
 		0625FBEF14AF7F4E00AF3C04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FBEE14AF7F4E00AF3C04 /* CoreGraphics.framework */; };
@@ -117,6 +120,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		061C3AFB16ECBC470070E60C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		061C3AFC16ECBC470070E60C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0625FBE614AF7F4E00AF3C04 /* kesikesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kesikesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0625FBEA14AF7F4E00AF3C04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0625FBEC14AF7F4E00AF3C04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -298,9 +305,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061C3AF916ECBC470070E60C /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */,
+				061C3AFB16ECBC470070E60C /* SVProgressHUD.h */,
+				061C3AFC16ECBC470070E60C /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD/SVProgressHUD;
+			sourceTree = SOURCE_ROOT;
+		};
 		0625FBDB14AF7F4E00AF3C04 = {
 			isa = PBXGroup;
 			children = (
+				061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */,
 				0625FC2414AF7F8300AF3C04 /* icon@2x.png */,
 				0625FC2214AF7F7F00AF3C04 /* icon.png */,
 				0625FBF014AF7F4E00AF3C04 /* kesikesi */,
@@ -433,6 +452,7 @@
 				0625FC4014AF80EB00AF3C04 /* NSString+MD5.m */,
 				0625FC4114AF80EB00AF3C04 /* PendingView.h */,
 				0625FC4214AF80EB00AF3C04 /* PendingView.m */,
+				061C3AF916ECBC470070E60C /* SVProgressHUD */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -745,6 +765,8 @@
 				0625FCF814B3266000AF3C04 /* home.png in Resources */,
 				0625FCF914B3266000AF3C04 /* home@2x.png in Resources */,
 				65C49F0C14C672CA0051F5A3 /* FBDialog.bundle in Resources */,
+				061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */,
+				061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,6 +825,7 @@
 				65C49F2A14C676BF0051F5A3 /* SBJSON.m in Sources */,
 				65C49F2B14C676BF0051F5A3 /* NSString+SBJSON.m in Sources */,
 				65C49F2C14C676BF0051F5A3 /* NSObject+SBJSON.m in Sources */,
+				061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,9 +924,10 @@
 					"-lz",
 				);
 				PROVISIONING_PROFILE = "71509653-F102-4018-8BF9-7F3F672BFF16";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71509653-F102-4018-8BF9-7F3F672BFF16";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C97524F-9AFE-41AA-85C5-9D85A78237A4";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/opencv_simulator/include\"";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -913,7 +937,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Osamu Noguchi";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Osamu Noguchi";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -929,18 +953,18 @@
 					"-lstdc++",
 					"-lz",
 				);
-				PROVISIONING_PROFILE = "F6E949D6-0849-43D0-B37F-7E97B04BCD3E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F6E949D6-0849-43D0-B37F-7E97B04BCD3E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "32F95CA5-B1A7-4B6E-97BC-BB2CF7BFD88D";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/opencv_simulator/include\"";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
 		0625FC1D14AF7F4E00AF3C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Osamu Noguchi (BQY439J4V9)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Osamu Noguchi (BQY439J4V9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
@@ -951,8 +975,7 @@
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71509653-F102-4018-8BF9-7F3F672BFF16";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71509653-F102-4018-8BF9-7F3F672BFF16";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C97524F-9AFE-41AA-85C5-9D85A78237A4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -960,7 +983,8 @@
 		0625FC1E14AF7F4E00AF3C04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Osamu Noguchi";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Osamu Noguchi";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kesikesi/kesikesi-Prefix.pch";
 				INFOPLIST_FILE = "kesikesi/kesikesi-Info.plist";
@@ -970,7 +994,7 @@
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F6E949D6-0849-43D0-B37F-7E97B04BCD3E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "32F95CA5-B1A7-4B6E-97BC-BB2CF7BFD88D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -13,11 +13,11 @@
 #import "AuthViewController.h"
 #import "NSString+MD5.h"
 #import "ImageUtil.h"
+#import "SVProgressHUD.h"
 
 @implementation MasterViewController
 
 @synthesize webView;
-@synthesize pendingView;
 @synthesize actionButton;
 @synthesize pickerMode;
 @synthesize imagePickerMode;
@@ -496,22 +496,11 @@
 }
 
 - (void)showPendingView {
-    if (pendingView == nil && ![self.view.subviews containsObject:pendingView]) {
-        pendingView = [[PendingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-40)];
-        pendingView.titleLabel.text = @"Please wait...";
-        pendingView.userInteractionEnabled = NO;
-        [self.view addSubview:pendingView];
-    }
-    
-    [pendingView showPendingView];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)hidePendingView {
-    if ([self.view.subviews containsObject:pendingView]) {
-        [pendingView hidePendingView];
-        
-        pendingView = nil;
-    }
+    [SVProgressHUD dismiss];
 }
 
 - (void)synchronizeGetMaskModeJsonArray:(NSArray*)params {
