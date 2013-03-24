@@ -42,10 +42,10 @@
     NSString *path = [url path];
     
     if ([[url scheme] isEqualToString:@"ksks"]) {
-        if ([[path substringFromIndex:1] length] == 6) {
+        if ([[path substringFromIndex:1] length] == 8) {
             NSLog(@"AppDelegate -> IMAGE_KEY: %@", [path substringFromIndex:1]);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[path substringFromIndex:1] forKey:@"IMAGE_KEY"];
+            [defaults setObject:[path substringFromIndex:3] forKey:@"IMAGE_KEY"];
             [defaults synchronize];
             
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
