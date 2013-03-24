@@ -44,7 +44,7 @@
 }
 
 - (void)cancelButtonPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,13 +100,13 @@
             // Force Reload.
             appDelegate.imageKey = @"reload";
             
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             return NO;
         } else if ([url rangeOfString:@"page/auth/fail"].location != NSNotFound) {
             NSLog(@"Auth Fail action detected.");
             
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             return NO;
         }

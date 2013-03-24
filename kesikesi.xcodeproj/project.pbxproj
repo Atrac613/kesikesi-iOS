@@ -29,7 +29,6 @@
 		0625FC3014AF808000AF3C04 /* KesiKesiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC2C14AF808000AF3C04 /* KesiKesiService.m */; };
 		0625FC3114AF808000AF3C04 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC2F14AF808000AF3C04 /* ImageUtil.m */; };
 		0625FC4814AF80EB00AF3C04 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC4014AF80EB00AF3C04 /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0625FC4914AF80EB00AF3C04 /* PendingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625FC4214AF80EB00AF3C04 /* PendingView.m */; };
 		0625FC6714AF80FA00AF3C04 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0625FC6114AF80FA00AF3C04 /* libzbar.a */; };
 		0625FC6814AF80FA00AF3C04 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0625FC6314AF80FA00AF3C04 /* zbar-back.png */; };
 		0625FC6914AF80FA00AF3C04 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 0625FC6414AF80FA00AF3C04 /* zbar-help.html */; };
@@ -140,8 +139,6 @@
 		0625FC2F14AF808000AF3C04 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		0625FC3F14AF80EB00AF3C04 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		0625FC4014AF80EB00AF3C04 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		0625FC4114AF80EB00AF3C04 /* PendingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingView.h; sourceTree = "<group>"; };
-		0625FC4214AF80EB00AF3C04 /* PendingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingView.m; sourceTree = "<group>"; };
 		0625FC4E14AF80FA00AF3C04 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		0625FC4F14AF80FA00AF3C04 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		0625FC5014AF80FA00AF3C04 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -425,8 +422,6 @@
 				0625FC3314AF80EB00AF3C04 /* JSON */,
 				0625FC3F14AF80EB00AF3C04 /* NSString+MD5.h */,
 				0625FC4014AF80EB00AF3C04 /* NSString+MD5.m */,
-				0625FC4114AF80EB00AF3C04 /* PendingView.h */,
-				0625FC4214AF80EB00AF3C04 /* PendingView.m */,
 				061C3AF916ECBC470070E60C /* SVProgressHUD */,
 			);
 			path = Library;
@@ -738,7 +733,6 @@
 				0625FC3014AF808000AF3C04 /* KesiKesiService.m in Sources */,
 				0625FC3114AF808000AF3C04 /* ImageUtil.m in Sources */,
 				0625FC4814AF80EB00AF3C04 /* NSString+MD5.m in Sources */,
-				0625FC4914AF80EB00AF3C04 /* PendingView.m in Sources */,
 				0625FCAE14AF84D500AF3C04 /* FingerPaintViewController.m in Sources */,
 				0625FCB114AF853000AF3C04 /* FrameView.m in Sources */,
 				0625FCB414AF874B00AF3C04 /* ScratchViewController.m in Sources */,
@@ -842,7 +836,7 @@
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/opencv_device/include\"";
 				"HEADER_SEARCH_PATHS[sdk=iphoneos*][arch=*]" = "\"$(SRCROOT)/opencv_device/include\"";
 				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*][arch=*]" = "\"$(SRCROOT)/opencv_simulator/include\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/opencv_device/lib\"";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*][arch=*]" = "\"$(SRCROOT)/opencv_device/lib\"";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*][arch=*]" = "\"$(SRCROOT)/opencv_simulator/lib\"";
@@ -873,7 +867,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/opencv_device/include\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/opencv_device/lib\"";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (

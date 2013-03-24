@@ -183,7 +183,7 @@
         imagePicker.allowsEditing = YES;
         imagePicker.delegate = self;
         
-        [self presentModalViewController:imagePicker animated:YES];
+        [self presentViewController:imagePicker animated:YES completion:nil];
     }
 }
 
@@ -195,7 +195,7 @@
     imagePicker.allowsEditing = YES;
     imagePicker.delegate = self;
     
-    [self presentModalViewController:imagePicker animated:YES];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (IBAction)exportButtonPressed:(id)sender {
@@ -251,7 +251,7 @@
         NSString *emailBody = url;
         [picker setMessageBody:emailBody isHTML:NO];
         
-        [self presentModalViewController:picker animated:YES];
+        [self presentViewController:picker animated:YES completion:nil];
     } else if (buttonIndex == 2) {
         //Tweet
         
@@ -293,7 +293,7 @@
     
     [self displayText:message];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showPickerView {
@@ -391,7 +391,7 @@
             NSLog(@"Auth action detected.");
             
             AuthViewController *authViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AuthView"];
-            [self presentModalViewController:authViewController animated:YES];
+            [self presentViewController:authViewController animated:YES completion:nil];
             
             return NO;
         } else if ([[path substringFromIndex:1] length] == 6) {
@@ -518,7 +518,7 @@
     
     [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
-    [self.navigationController presentModalViewController:zBarReaderViewController animated:YES];
+    [self presentViewController:zBarReaderViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*) info {
@@ -543,7 +543,7 @@
             if (hostResult.location != NSNotFound && [[path substringFromIndex:1] length] == 6) {
                 NSLog(@"kesikesi.me Detected.");
                 
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 [self showPendingView];
                 
                 NSArray *params = [[NSArray alloc] initWithObjects:[path substringFromIndex:1], nil];
@@ -557,7 +557,7 @@
         results = nil;
     } else if ([pickerMode isEqualToString:@"camera"]) {
         @try {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             // Crop to square image.
             ImageUtil *util = [[ImageUtil alloc] init];
@@ -575,7 +575,7 @@
         }
     } else if ([pickerMode isEqualToString:@"library"]) {
         @try {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             // Crop to square image.
             ImageUtil *util = [[ImageUtil alloc] init];

@@ -58,7 +58,6 @@
 }
 
 - (IBAction)scanButtonPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
     [self performSelector:@selector(showBarcodeScanView) withObject:nil afterDelay:0.5];
 }
 

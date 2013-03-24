@@ -298,7 +298,7 @@
         searchString = symbol.data;
         NSLog(@"Code: %@", searchString);
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
         NSArray *params = [[NSArray alloc] initWithObjects:searchString, nil];
         [self performSelector:@selector(showBarcodeScanModalView:) withObject:params afterDelay:0.5];
@@ -311,11 +311,11 @@
     BarcodeScanModalViewController *barcodeScanModalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BarcodeScanModalView"];
     barcodeScanModalViewController.delegate = self;
     barcodeScanModalViewController.barcode = [params objectAtIndex:0];
-    [self.navigationController presentModalViewController:barcodeScanModalViewController animated:YES];
+    [self presentViewController:barcodeScanModalViewController animated:YES completion:nil];
 }
 
 - (void)setBarcodeAndUpload:(NSString*)barcode {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     //[self showPendingView];
     
     NSArray *params = [[NSArray alloc] initWithObjects:@"barcode", barcode, nil];
@@ -329,7 +329,7 @@
     
     [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
-    [self.navigationController presentModalViewController:zBarReaderViewController animated:YES];
+    [self presentViewController:zBarReaderViewController animated:YES completion:nil];
 }
 
 - (void)touchedAtIndex:(NSInteger)index

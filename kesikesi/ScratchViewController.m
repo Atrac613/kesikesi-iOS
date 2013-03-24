@@ -313,7 +313,7 @@
     
     [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
-    [self.navigationController presentModalViewController:zBarReaderViewController animated:YES];
+    [self presentViewController:zBarReaderViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*) info {
@@ -326,7 +326,7 @@
         searchString = symbol.data;
         NSLog(@"Code: %@", searchString);
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
         if ([searchString isEqualToString:accessCode]) {
             [UIView beginAnimations:nil context:nil];
