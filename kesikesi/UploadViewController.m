@@ -45,6 +45,9 @@
 {
     [super viewDidLoad];
     
+    // for Google Analytics
+    self.trackedViewName = NSStringFromClass([self class]);
+    
     self.tmpImageKey = @"";
     self.comment = @"";
     

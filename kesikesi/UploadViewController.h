@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import "GAITrackedViewController.h"
 
-@interface UploadViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface UploadViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *tableView;
     
     NSString *tmpImageKey;

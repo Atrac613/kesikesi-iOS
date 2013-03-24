@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KesiKesiService.h"
+#import "GAI.h"
 
 #define SharedAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
@@ -25,6 +26,8 @@
     NSOperationQueue *operationQueue;
     NSString *imageKey;
     KesiKesiService *kService;
+    
+    id<GAITracker> tracker;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -38,5 +41,6 @@
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 @property (nonatomic, retain) NSString *imageKey;
 @property (nonatomic, retain) KesiKesiService *kService;
+@property (nonatomic, retain) id<GAITracker> tracker;
 
 @end

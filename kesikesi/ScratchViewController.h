@@ -10,8 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ZBarReaderViewController.h"
 #import <iAd/iAD.h>
+#import "GAITrackedViewController.h"
 
-@interface ScratchViewController : UIViewController <ADBannerViewDelegate, AVAudioRecorderDelegate, UIAccelerometerDelegate,ZBarReaderDelegate> {
+@interface ScratchViewController : GAITrackedViewController <ADBannerViewDelegate, AVAudioRecorderDelegate, UIAccelerometerDelegate,ZBarReaderDelegate> {
     NSString *imageKey;
     IBOutlet UIImageView *originalImage;
     UIImageView *maskImage;

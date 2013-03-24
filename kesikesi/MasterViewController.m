@@ -26,6 +26,7 @@
 @synthesize pickerToolbar;
 @synthesize pickerViewPopup;
 @synthesize refreshArchive;
+@synthesize alertMode;
 
 - (void)awakeFromNib
 {
@@ -43,6 +44,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // for Google Analytics
+    self.trackedViewName = NSStringFromClass([self class]);
     
     [self.navigationItem setTitle:@"KesiKesi"];
     
@@ -80,6 +84,8 @@
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    [self showUsageStatisticsPermissionAlert:NO];
 }
 
 - (void)viewDidUnload
@@ -644,6 +650,43 @@
     }];
     
     [self presentViewController:facebookPostViewController animated:YES completion:nil];
+}
+
+#pragma mark - Send Usage Statistics Dialog
+
+- (void)showUsageStatisticsPermissionAlert:(BOOL)force {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:kSendUsageStatisticsAlert] && !force) {
+        return;
+    }
+    
+    alertMode = @"confirm_usage_statistics";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"CONFIRM_USAGE_STATISTICS", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"NO", @"") otherButtonTitles:NSLocalizedString(@"YES", @""), nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertMode isEqualToString:@"confirm_usage_statistics"]) {
+        alertMode = @"";
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kSendUsageStatisticsAlert];
+        
+        if (buttonIndex == 1) {
+            [defaults setObject:[NSNumber numberWithBool:YES] forKey:kSendUsageStatistics];
+            
+            [[GAI sharedInstance] setOptOut:NO];
+        } else {
+            [defaults setObject:[NSNumber numberWithBool:NO] forKey:kSendUsageStatistics];
+            
+            [[GAI sharedInstance] setOptOut:YES];
+        }
+        
+        [defaults synchronize];
+    }
 }
 
 @end

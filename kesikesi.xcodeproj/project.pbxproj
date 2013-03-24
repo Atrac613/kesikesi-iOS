@@ -12,6 +12,12 @@
 		0602765216FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602765116FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m */; };
 		060CB47116FEE41B008B6C8E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB47016FEE41B008B6C8E /* StoreKit.framework */; };
 		060CB47316FEE89D008B6C8E /* third_party_notices.html in Resources */ = {isa = PBXBuildFile; fileRef = 060CB47216FEE89D008B6C8E /* third_party_notices.html */; };
+		060CB4E816FEF413008B6C8E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB4B916FEF413008B6C8E /* libGoogleAnalytics.a */; };
+		060CB4EA16FEF414008B6C8E /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4BB16FEF413008B6C8E /* Readme.txt */; };
+		060CB4EF16FEF5FE008B6C8E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB4EE16FEF5FE008B6C8E /* libsqlite3.0.dylib */; };
+		060CB4F116FEF63B008B6C8E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB4F016FEF63B008B6C8E /* CoreData.framework */; };
+		060CB4F316FEF659008B6C8E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB4F216FEF659008B6C8E /* SystemConfiguration.framework */; };
+		060CB4F516FEF6E8008B6C8E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4F416FEF6E8008B6C8E /* Settings.bundle */; };
 		061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */; };
 		061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */; };
 		061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 061C3AFC16ECBC470070E60C /* SVProgressHUD.m */; };
@@ -118,6 +124,17 @@
 		0602765116FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdPartyNoticesViewController.m; sourceTree = "<group>"; };
 		060CB47016FEE41B008B6C8E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		060CB47216FEE89D008B6C8E /* third_party_notices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = third_party_notices.html; sourceTree = "<group>"; };
+		060CB4B416FEF413008B6C8E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		060CB4B516FEF413008B6C8E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		060CB4B616FEF413008B6C8E /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		060CB4B716FEF413008B6C8E /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		060CB4B816FEF413008B6C8E /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		060CB4B916FEF413008B6C8E /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		060CB4BB16FEF413008B6C8E /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		060CB4EE16FEF5FE008B6C8E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		060CB4F016FEF63B008B6C8E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		060CB4F216FEF659008B6C8E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		060CB4F416FEF6E8008B6C8E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = kesikesi/Resources/Settings.bundle; sourceTree = "<group>"; };
 		061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		061C3AFB16ECBC470070E60C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -273,6 +290,10 @@
 				0625FCFF14B33DD800AF3C04 /* MessageUI.framework in Frameworks */,
 				0602764C16FDE9A0006EDA9B /* Social.framework in Frameworks */,
 				060CB47116FEE41B008B6C8E /* StoreKit.framework in Frameworks */,
+				060CB4E816FEF413008B6C8E /* libGoogleAnalytics.a in Frameworks */,
+				060CB4EF16FEF5FE008B6C8E /* libsqlite3.0.dylib in Frameworks */,
+				060CB4F116FEF63B008B6C8E /* CoreData.framework in Frameworks */,
+				060CB4F316FEF659008B6C8E /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +310,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060CB47416FEF413008B6C8E /* GoogleAnalyticsiOS_2.0beta4 */ = {
+			isa = PBXGroup;
+			children = (
+				060CB4B316FEF413008B6C8E /* Library */,
+				060CB4BB16FEF413008B6C8E /* Readme.txt */,
+			);
+			path = GoogleAnalyticsiOS_2.0beta4;
+			sourceTree = "<group>";
+		};
+		060CB4B316FEF413008B6C8E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				060CB4B416FEF413008B6C8E /* GAI.h */,
+				060CB4B516FEF413008B6C8E /* GAITrackedViewController.h */,
+				060CB4B616FEF413008B6C8E /* GAITracker.h */,
+				060CB4B716FEF413008B6C8E /* GAITransaction.h */,
+				060CB4B816FEF413008B6C8E /* GAITransactionItem.h */,
+				060CB4B916FEF413008B6C8E /* libGoogleAnalytics.a */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		061C3AF916ECBC470070E60C /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,14 +369,18 @@
 		0625FBE914AF7F4E00AF3C04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				060CB47416FEF413008B6C8E /* GoogleAnalyticsiOS_2.0beta4 */,
+				060CB4F216FEF659008B6C8E /* SystemConfiguration.framework */,
 				060CB47016FEE41B008B6C8E /* StoreKit.framework */,
 				0602764B16FDE9A0006EDA9B /* Social.framework */,
 				0625FCFE14B33DD800AF3C04 /* MessageUI.framework */,
 				0625FCE714B194B200AF3C04 /* CoreImage.framework */,
+				060CB4F016FEF63B008B6C8E /* CoreData.framework */,
 				0625FCD514B015C100AF3C04 /* CoreVideo.framework */,
 				0625FCCE14B006BB00AF3C04 /* CoreGraphics.framework */,
 				0625FCCF14B006BB00AF3C04 /* QuartzCore.framework */,
 				0625FCCC14B0068700AF3C04 /* libiconv.dylib */,
+				060CB4EE16FEF5FE008B6C8E /* libsqlite3.0.dylib */,
 				0625FCC614B0066200AF3C04 /* AVFoundation.framework */,
 				0625FCC714B0066200AF3C04 /* CoreAudio.framework */,
 				0625FCC814B0066200AF3C04 /* CoreMedia.framework */,
@@ -529,6 +576,7 @@
 		0625FC6C14AF82BA00AF3C04 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				060CB4F416FEF6E8008B6C8E /* Settings.bundle */,
 				060CB47216FEE89D008B6C8E /* third_party_notices.html */,
 				0625FC7514AF834000AF3C04 /* images */,
 				0625FC7114AF832900AF3C04 /* ja.lproj */,
@@ -711,6 +759,8 @@
 				061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */,
 				061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */,
 				060CB47316FEE89D008B6C8E /* third_party_notices.html in Resources */,
+				060CB4EA16FEF414008B6C8E /* Readme.txt in Resources */,
+				060CB4F516FEF6E8008B6C8E /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +964,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
+					"\"$(SRCROOT)/GoogleAnalyticsiOS_2.0beta4/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C97524F-9AFE-41AA-85C5-9D85A78237A4";
@@ -933,6 +984,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
 					"\"$(SRCROOT)/opencv_simulator/lib\"",
+					"\"$(SRCROOT)/GoogleAnalyticsiOS_2.0beta4/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "32F95CA5-B1A7-4B6E-97BC-BB2CF7BFD88D";

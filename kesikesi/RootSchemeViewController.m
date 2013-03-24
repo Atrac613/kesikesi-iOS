@@ -36,6 +36,9 @@
 {
     [super viewDidLoad];
     
+    // for Google Analytics
+    self.trackedViewName = NSStringFromClass([self class]);
+    
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed)]];
     
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

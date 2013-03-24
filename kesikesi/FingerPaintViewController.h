@@ -10,8 +10,9 @@
 #import "ZBarReaderViewController.h"
 #import "FrameView.h"
 #import <opencv2/imgproc/imgproc_c.h>
+#import "GAITrackedViewController.h"
 
-@interface FingerPaintViewController : UIViewController <UIAlertViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, ZBarReaderDelegate>{
+@interface FingerPaintViewController : GAITrackedViewController <UIAlertViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, ZBarReaderDelegate>{
     IBOutlet UIImageView *imageView;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UILabel *chooseLabel;

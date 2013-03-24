@@ -71,3 +71,7 @@
 "CLEAR_CACHE" = "キャッシュを消す";
 "LICENSE" = "ライセンス";
 "RATE_THIS_APP" = "このアプリを評価";
+
+"YES" = "はい";
+"NO" = "いいえ";
+"CONFIRM_USAGE_STATISTICS" = "このアプリケーションの今後の改善の為に匿名の使用統計情報を送信しますか？";

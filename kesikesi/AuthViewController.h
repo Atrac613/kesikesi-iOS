@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface AuthViewController : UIViewController <UIWebViewDelegate, UINavigationBarDelegate> {
+@interface AuthViewController : GAITrackedViewController <UIWebViewDelegate, UINavigationBarDelegate> {
     IBOutlet UINavigationBar *navigationBar;
     IBOutlet UINavigationItem *navigationItem;
     IBOutlet UIWebView *webView;

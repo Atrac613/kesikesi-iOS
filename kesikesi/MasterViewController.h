@@ -11,8 +11,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import "ZBarReaderViewController.h"
+#import "GAITrackedViewController.h"
 
-@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate> {
+@interface MasterViewController : GAITrackedViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate> {
     IBOutlet UIWebView *webView;
     
     IBOutlet UIBarButtonItem *actionButton;
@@ -25,6 +26,8 @@
     UIActionSheet *pickerViewPopup;
     
     BOOL refreshArchive;
+    
+    NSString *alertMode;
 }
 
 @property (nonatomic, retain) UIWebView *webView;
@@ -39,6 +42,8 @@
 @property (nonatomic, retain) UIActionSheet *pickerViewPopup;
 
 @property (nonatomic) BOOL refreshArchive;
+
+@property (nonatomic, retain) NSString *alertMode;
 
 - (void)composeButtonPressed;
 - (void)homeButtonPressed;

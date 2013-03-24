@@ -71,3 +71,7 @@
 "CLEAR_CACHE" = "Clear Cache";
 "LICENSE" = "License";
 "RATE_THIS_APP" = "Rate This App";
+
+"YES" = "Yes";
+"NO" = "No";
+"CONFIRM_USAGE_STATISTICS" = "In order to improve this application, is it okay to submit anonymous usage statistics?";

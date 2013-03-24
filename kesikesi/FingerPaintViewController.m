@@ -55,6 +55,9 @@
 {
     [super viewDidLoad];
     
+    // for Google Analytics
+    self.trackedViewName = NSStringFromClass([self class]);
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NEXT", @"") style:UIBarButtonItemStylePlain target:self action:@selector(nextButtonPressed)];
