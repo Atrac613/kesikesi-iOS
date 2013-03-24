@@ -48,7 +48,7 @@
     [Appirater setUsesUntilPrompt:10];
     [Appirater setSignificantEventsUntilPrompt:-1];
     [Appirater setTimeBeforeReminding:2];
-    [Appirater setDebug:YES];
+    [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
     
     // Override point for customization after application launch.
