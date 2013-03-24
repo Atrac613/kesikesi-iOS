@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0602764C16FDE9A0006EDA9B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0602764B16FDE9A0006EDA9B /* Social.framework */; };
+		0602764F16FEE030006EDA9B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602764E16FEE02F006EDA9B /* AboutViewController.m */; };
+		0602765216FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602765116FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m */; };
+		060CB47116FEE41B008B6C8E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060CB47016FEE41B008B6C8E /* StoreKit.framework */; };
+		060CB47316FEE89D008B6C8E /* third_party_notices.html in Resources */ = {isa = PBXBuildFile; fileRef = 060CB47216FEE89D008B6C8E /* third_party_notices.html */; };
 		061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */; };
 		061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */; };
 		061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 061C3AFC16ECBC470070E60C /* SVProgressHUD.m */; };
@@ -108,6 +112,12 @@
 
 /* Begin PBXFileReference section */
 		0602764B16FDE9A0006EDA9B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0602764D16FEE02F006EDA9B /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		0602764E16FEE02F006EDA9B /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		0602765016FEE0B0006EDA9B /* ThirdPartyNoticesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPartyNoticesViewController.h; sourceTree = "<group>"; };
+		0602765116FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdPartyNoticesViewController.m; sourceTree = "<group>"; };
+		060CB47016FEE41B008B6C8E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		060CB47216FEE89D008B6C8E /* third_party_notices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = third_party_notices.html; sourceTree = "<group>"; };
 		061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		061C3AFB16ECBC470070E60C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -262,6 +272,7 @@
 				0625FCE814B194B200AF3C04 /* CoreImage.framework in Frameworks */,
 				0625FCFF14B33DD800AF3C04 /* MessageUI.framework in Frameworks */,
 				0602764C16FDE9A0006EDA9B /* Social.framework in Frameworks */,
+				060CB47116FEE41B008B6C8E /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +326,7 @@
 		0625FBE914AF7F4E00AF3C04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				060CB47016FEE41B008B6C8E /* StoreKit.framework */,
 				0602764B16FDE9A0006EDA9B /* Social.framework */,
 				0625FCFE14B33DD800AF3C04 /* MessageUI.framework */,
 				0625FCE714B194B200AF3C04 /* CoreImage.framework */,
@@ -359,6 +371,10 @@
 				0625FCD314B00C7800AF3C04 /* RootSchemeViewController.m */,
 				0625FCF314B3146500AF3C04 /* AuthViewController.h */,
 				0625FCF414B3146700AF3C04 /* AuthViewController.m */,
+				0602764D16FEE02F006EDA9B /* AboutViewController.h */,
+				0602764E16FEE02F006EDA9B /* AboutViewController.m */,
+				0602765016FEE0B0006EDA9B /* ThirdPartyNoticesViewController.h */,
+				0602765116FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m */,
 				0625FBF114AF7F4E00AF3C04 /* Supporting Files */,
 			);
 			path = kesikesi;
@@ -513,6 +529,7 @@
 		0625FC6C14AF82BA00AF3C04 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				060CB47216FEE89D008B6C8E /* third_party_notices.html */,
 				0625FC7514AF834000AF3C04 /* images */,
 				0625FC7114AF832900AF3C04 /* ja.lproj */,
 				0625FC6D14AF82F200AF3C04 /* en.lproj */,
@@ -693,6 +710,7 @@
 				0625FCF914B3266000AF3C04 /* home@2x.png in Resources */,
 				061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */,
 				061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */,
+				060CB47316FEE89D008B6C8E /* third_party_notices.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,6 +765,8 @@
 				65C49F2B14C676BF0051F5A3 /* NSString+SBJSON.m in Sources */,
 				65C49F2C14C676BF0051F5A3 /* NSObject+SBJSON.m in Sources */,
 				061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */,
+				0602764F16FEE030006EDA9B /* AboutViewController.m in Sources */,
+				0602765216FEE0B0006EDA9B /* ThirdPartyNoticesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

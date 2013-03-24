@@ -120,7 +120,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWG-9n-7Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="667"/>
+            <point key="canvasLocation" x="402" y="745"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="Gax-YK-9p6">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="HQM-lC-bDY" customClass="AboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DIX-yS-LDX">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="RJp-WK-Wed">
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HQM-lC-bDY" id="yvT-bv-DSd"/>
+                                    <outlet property="delegate" destination="HQM-lC-bDY" id="vFB-yN-DRw"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" id="XHc-ls-9Vn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="PKF-0v-sMj"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="XHc-ls-9Vn" id="ISQ-cq-JeN"/>
+                        <outlet property="navigationItem" destination="PKF-0v-sMj" id="HEK-kw-bkJ"/>
+                        <outlet property="tableView" destination="RJp-WK-Wed" id="8Fe-ed-liF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Frr-vk-Syk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="745"/>
+        </scene>
+        <!--Third Party Notices View Controller-->
+        <scene sceneID="YcR-Bd-McH">
+            <objects>
+                <viewController storyboardIdentifier="ThirdPartyNoticesViewController" id="H89-Io-suJ" customClass="ThirdPartyNoticesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zkc-V9-Nxi">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="wUd-qs-uAn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="SdH-id-bc3"/>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" id="ESS-Fb-hMi">
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="navigationItem" destination="SdH-id-bc3" id="oo9-2d-7xZ"/>
+                        <outlet property="webView" destination="ESS-Fb-hMi" id="bk3-qH-ec5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jhd-0G-1L8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1201" y="745"/>
         </scene>
         <!--Finger Paint View Controller-->
         <scene sceneID="594-N1-gRl">
@@ -333,60 +403,6 @@
         <image name="btn_back.png" width="17" height="22"/>
         <image name="btn_next.png" width="17" height="22"/>
     </resources>
-    <classes>
-        <class className="AuthViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AuthViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="navigationItem" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="BarcodeScanModalViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BarcodeScanModalViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="FingerPaintViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FingerPaintViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="chooseLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="frameThumnailView" candidateClass="FrameView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="FrameView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FrameView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="viewController" candidateClass="FingerPaintViewController"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="actionButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="RootSchemeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootSchemeViewController.h"/>
-        </class>
-        <class className="ScratchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScratchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="originalImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="UploadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

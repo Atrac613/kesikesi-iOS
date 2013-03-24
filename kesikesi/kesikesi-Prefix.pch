@@ -16,3 +16,11 @@
 #define SECRET_IMAGE_KEY @"f8bb23cfad0898a2fe14285fc2f9b305"
 #define SECRET_MASK_KEY @"b5bc14c781fa7d95915a2be750a4e82d"
 #define SECRET_USER_KEY @"a7a2d82428453b9037d5675fd7764c0b"
+
+#define kSendUsageStatisticsAlert @"send_usage_statistics_alert"
+#define kSendUsageStatistics @"send_usage_statistics"
+#define kGoogleAnalyticsTrackingId @"UA-1167116-23"
+
+#define kAppId 471597529
+
+#define SEND_USAGE_STATISTICS ((bool)[[[NSUserDefaults standardUserDefaults] objectForKey:kSendUsageStatistics] boolValue])

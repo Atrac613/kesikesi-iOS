@@ -14,6 +14,7 @@
 #import "NSString+MD5.h"
 #import "ImageUtil.h"
 #import "SVProgressHUD.h"
+#import "AboutViewController.h"
 
 @implementation MasterViewController
 
@@ -435,6 +436,12 @@
             }
             
             return NO;
+        } else if ([url rangeOfString:@"about"].location != NSNotFound) {
+            NSLog(@"About action detected.");
+            
+            AboutViewController *aboutViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutViewController"];
+            [aboutViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+            [self presentViewController:aboutViewController animated:YES completion:nil];
         }
     }
     
