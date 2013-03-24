@@ -15,6 +15,7 @@
 #import "ImageUtil.h"
 #import "SVProgressHUD.h"
 #import "AboutViewController.h"
+#import "LINEActivity.h"
 
 @implementation MasterViewController
 
@@ -133,19 +134,6 @@
     return NO;
 }
 
-
-- (void)webViewDidStartLoad:(UIWebView *)wv {
-    [self showPendingView];
-    
-    //self.navigationItem.rightBarButtonItem.enabled = NO;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)wv {    
-    [self hidePendingView];
-    
-    //self.navigationItem.rightBarButtonItem.enabled = YES;    
-}
-
 - (void)refreshMyArchives {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -163,12 +151,26 @@
     appDelegate.imageKey = @"";
 }
 
+#pragma mark - IBActions
+
 - (void)composeButtonPressed {    
     [self showPickerView];
 }
 
 - (void)homeButtonPressed {
     [self refreshMyArchives];
+}
+
+- (IBAction)scanButtonPressed {
+    pickerMode = @"zbar";
+    
+    ZBarReaderViewController *zBarReaderViewController = [ZBarReaderViewController new];
+    zBarReaderViewController.readerDelegate = self;
+    ZBarImageScanner *scanner = zBarReaderViewController.scanner;
+    
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    
+    [self presentViewController:zBarReaderViewController animated:YES completion:nil];
 }
 
 - (void)showCameraView {
@@ -223,15 +225,6 @@
 }
 
 - (void)showExportView {
-    pickerViewPopup = [[UIActionSheet alloc] initWithTitle:nil
-                                                  delegate:self
-                                         cancelButtonTitle:NSLocalizedString(@"CANCEL", @"")
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:NSLocalizedString(@"OPEN_IN_SAFARI", @""), NSLocalizedString(@"EMAIL_LINK", @""), NSLocalizedString(@"TWEET", @""), NSLocalizedString(@"FACEBOOK_SHARE", @""), nil];
-    [pickerViewPopup showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *host =[webView.request.URL host];
     NSNumber *port = [webView.request.URL port];
     NSString *path = [webView.request.URL path];
@@ -243,64 +236,13 @@
     } else {
         url = [NSString stringWithFormat:@"http://kesikesi.atrac613.io%@", path];
     }
-
-    if (buttonIndex == 0) {
-        // Open in Safari
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    } else if (buttonIndex == 1) {
-        // E-Mail Link
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = self;
-        
-        [picker setSubject:title];
-        
-        // Fill out the email body text
-        NSString *emailBody = url;
-        [picker setMessageBody:emailBody isHTML:NO];
-        
-        [self presentViewController:picker animated:YES completion:nil];
-    } else if (buttonIndex == 2) {
-        //Tweet
-        
-        [self showTweetView:title url:[[NSURL alloc] initWithString:url]];
-    } else if (buttonIndex == 3) {
-        // Facebook Share
-        
-        [self showFacebookView:title url:[[NSURL alloc] initWithString:url]];
-    }
+    
+    [self openInOtherApps:title url:[[NSURL alloc] initWithString:url]];
 }
 
 - (void)displayText:(NSString *)text {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
-{    
-    NSString *message;
-    // Notifies users about errors associated with the interface
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            message = NSLocalizedString(@"EMAIL_CANCELED", @"");
-            break;
-        case MFMailComposeResultSaved:
-            message = NSLocalizedString(@"EMAIL_SAVED", @"");
-            break;
-        case MFMailComposeResultSent:
-            message = NSLocalizedString(@"EMAIL_SENT", @"");
-            break;
-        case MFMailComposeResultFailed:
-            message = NSLocalizedString(@"EMAIL_FAILED", @"");
-            break;
-        default:
-            message = NSLocalizedString(@"EMAIL_NOT_SENT", @"");
-            break;
-    }
-    
-    [self displayText:message];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showPickerView {
@@ -361,6 +303,8 @@
     return YES;
 }
 
+#pragma mark - UIPickerView Delegate
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
@@ -371,6 +315,20 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return NSLocalizedString([imagePickerMode objectAtIndex:row], @"");
+}
+
+#pragma mark - UIWebView Delegate
+
+- (void)webViewDidStartLoad:(UIWebView *)wv {
+    [self showPendingView];
+    
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)wv {
+    [self hidePendingView];
+    
+    //self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -454,6 +412,8 @@
     return YES;
 }
 
+#pragma mark - PendingView
+
 - (void)showPendingView {
     [SVProgressHUD showWithStatus:@"Loading..."];
 }
@@ -461,6 +421,8 @@
 - (void)hidePendingView {
     [SVProgressHUD dismiss];
 }
+
+#pragma mark - Operations
 
 - (void)synchronizeGetMaskModeJsonArray:(NSArray*)params {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -520,17 +482,7 @@
     return results;
 }
 
-- (IBAction)scanButtonPressed {
-    pickerMode = @"zbar";
-    
-    ZBarReaderViewController *zBarReaderViewController = [ZBarReaderViewController new];
-    zBarReaderViewController.readerDelegate = self;
-    ZBarImageScanner *scanner = zBarReaderViewController.scanner;
-    
-    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
-    
-    [self presentViewController:zBarReaderViewController animated:YES completion:nil];
-}
+#pragma mark - UIImagePicker Delegate
 
 - (void)imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*) info {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -604,52 +556,38 @@
     }
 }
 
-- (void)showTweetView:(NSString*)message url:(NSURL*)url {
-    SLComposeViewController *twitterPostViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [twitterPostViewController setInitialText:message];
-    [twitterPostViewController addURL:url];
-    
-    [twitterPostViewController setCompletionHandler:^(SLComposeViewControllerResult result){
-        switch (result) {
-            case SLComposeViewControllerResultCancelled:
-                NSLog(@"Cancelled");
-                
-                break;
-            case SLComposeViewControllerResultDone:
-                NSLog(@"Done");
-                
-            default:
-                break;
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [self presentViewController:twitterPostViewController animated:YES completion:nil];
-}
+#pragma mark - UIActivityViewController
 
-- (void)showFacebookView:(NSString*)message url:(NSURL*)url {
-    SLComposeViewController *facebookPostViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [facebookPostViewController setInitialText:message];
-    [facebookPostViewController addURL:url];
+- (void)openInOtherApps:(NSString*)message url:(NSURL*)url {
+    NSArray *actItems = [NSArray arrayWithObjects:message, url, nil];
     
-    [facebookPostViewController setCompletionHandler:^(SLComposeViewControllerResult result){
-        switch (result) {
-            case SLComposeViewControllerResultCancelled:
-                NSLog(@"Cancelled");
-                
-                break;
-            case SLComposeViewControllerResultDone:
-                NSLog(@"Done");
-                
-            default:
-                break;
+    NSArray *applicationActivities = @[[[LINEActivity alloc] init]];
+    
+    UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:actItems applicationActivities:applicationActivities];
+    activityView.excludedActivityTypes = @[UIActivityTypeAssignToContact];
+    
+    activityView.completionHandler = ^(NSString *activityType, BOOL completed){
+        NSLog(@"Activity Type: %@", activityType);
+        
+        [SharedAppDelegate.tracker sendEventWithCategory:@"uiActivity" withAction:@"buttonPress" withLabel:activityType withValue:nil];
+        
+        if (completed) {
+            NSLog(@"Done.");
+        } else {
+            NSLog(@"Failed.");
+            
+            LINEActivity *lineActivity = [[LINEActivity alloc] init];
+            if ([activityType isEqualToString:[lineActivity activityType]]) {
+                NSString *newMessage = [NSString stringWithFormat:@"%@ %@", message, [url absoluteString]];
+                newMessage = [newMessage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+                [lineActivity openLINEWithItem:newMessage];
+            }
         }
         
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    };
     
-    [self presentViewController:facebookPostViewController animated:YES completion:nil];
+    [self presentViewController:activityView animated:YES completion:nil];
 }
 
 #pragma mark - Send Usage Statistics Dialog

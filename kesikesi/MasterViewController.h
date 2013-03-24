@@ -63,7 +63,4 @@
 
 - (void)displayText:(NSString *)text;
 
-- (void)showTweetView:(NSString*)message url:(NSURL*)url;
-- (void)showFacebookView:(NSString*)message url:(NSURL*)url;
-
 @end
