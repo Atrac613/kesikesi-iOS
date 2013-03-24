@@ -21,7 +21,6 @@
 @synthesize operationQueue;
 @synthesize imageKey;
 @synthesize kService;
-@synthesize facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -56,8 +55,6 @@
         }
         
         return YES;
-    } else {
-        return [facebook handleOpenURL:url];
     }
     
     return NO;

@@ -134,7 +134,7 @@
     [body appendData:[[NSString stringWithFormat:@"%@", maskMode] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"mask_type"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@", maskType] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -238,20 +238,22 @@
                     bgTask = UIBackgroundTaskInvalid;
                 }
                 
-                if (doFacebook) {
-                    [self sendFacebook:[NSString stringWithFormat:@"http://www.kesikesi.me/%@", appDelegate.imageKey]];
+                NSString *tweetMessage;
+                if ([comment length] > 0) {
+                    tweetMessage = comment;
+                } else {
+                    tweetMessage = NSLocalizedString(@"TWEET_MESSAGE", @"");
                 }
                 
+                NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://kesikesi.atrac613.io/p/%@", appDelegate.imageKey]];
+                
+                [self.navigationItem setHidesBackButton:NO animated:YES];
+                
                 if (doTweet) {
-                    NSString *tweetMessage;
-                    if ([comment length] > 0) {
-                        tweetMessage = comment;
-                    } else {
-                        tweetMessage = NSLocalizedString(@"TWEET_MESSAGE", @"");
-                    }
-                    [self showTweetView:[NSString stringWithFormat:@"%@ http://www.kesikesi.me/%@ via @kesikesi_me", tweetMessage, appDelegate.imageKey]];
+                    [self showTweetView:tweetMessage url:url];
+                } else if (doFacebook) {
+                    [self showFacebookView:tweetMessage url:url];
                 } else {
-                    [self.navigationItem setHidesBackButton:NO];
                     [self.navigationItem.rightBarButtonItem setEnabled:YES];
                     
                     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -383,24 +385,6 @@
         doTweet = switchControl.on;
     } else {
         doFacebook = switchControl.on;
-        
-        if (doFacebook) {
-            AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            appDelegate.facebook = [[Facebook alloc] initWithAppId:@"132918306826766" andDelegate:self];
-            
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            if ([defaults objectForKey:@"FBAccessTokenKey"] 
-                && [defaults objectForKey:@"FBExpirationDateKey"]) {
-                appDelegate.facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-                appDelegate.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-            }
-            
-            if (![appDelegate.facebook isSessionValid]) {
-                NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access",nil];
-                [appDelegate.facebook authorize:permissions];
-            }
-        }
     }
 }
 
@@ -414,86 +398,77 @@
     return YES;
 }
 
-- (void)displayTextAndExit:(NSString *)text {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:text delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
-    
+- (void)gotoRootView {
+    NSLog(@"ecddd");
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)showTweetView:(NSString*)tweet {
-    if ([TWTweetComposeViewController canSendTweet]) {
-        // Set up the built-in twitter composition view controller.
-        TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+- (void)showTweetView:(NSString*)message url:(NSURL*)url {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *twitterPostViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [twitterPostViewController setInitialText:message];
+        [twitterPostViewController addURL:url];
         
-        // Set the initial tweet text. See the framework for additional properties that can be set.
-        [tweetViewController setInitialText:tweet];
-        
-        // Create the completion handler block.
-        [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
-            NSString *output;
-            
+        [twitterPostViewController setCompletionHandler:^(SLComposeViewControllerResult result){
             switch (result) {
-                case TWTweetComposeViewControllerResultCancelled:
-                    // The cancel button was tapped.
-                    output = NSLocalizedString(@"TWEET_CANCELED", @"");
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Cancelled");
+                    
                     break;
-                case TWTweetComposeViewControllerResultDone:
-                    // The tweet was sent.
-                    output = NSLocalizedString(@"TWEET_SENT", @"");
-                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Done");
+                    
                 default:
                     break;
             }
             
-            [self performSelectorOnMainThread:@selector(displayTextAndExit:) withObject:output waitUntilDone:NO];
-            
-            // Dismiss the tweet composition view controller.
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:^(void){
+                if (doFacebook) {
+                    [self showFacebookView:message url:url];
+                } else {
+                    [self performSelectorOnMainThread:@selector(gotoRootView) withObject:nil waitUntilDone:YES];
+                }
+            }];
         }];
         
-        // Present the tweet composition view controller modally.
-        [self presentModalViewController:tweetViewController animated:YES];
+        [self presentViewController:twitterPostViewController animated:YES completion:nil];
     } else {
-        [self displayTextAndExit:NSLocalizedString(@"CAN_NOT_TWEET", @"")];
+        if (doFacebook) {
+            [self showFacebookView:message url:url];
+        } else {
+            [self performSelectorOnMainThread:@selector(gotoRootView) withObject:nil waitUntilDone:YES];
+        }
     }
 }
 
-- (void)sendFacebook:(NSString*)url {
-    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    if ([appDelegate.facebook isSessionValid]) {
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys: url, @"url", nil];
+- (void)showFacebookView:(NSString*)message url:(NSURL*)url {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookPostViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookPostViewController setInitialText:message];
+        [facebookPostViewController addURL:url];
         
-        [appDelegate.facebook requestWithMethodName:@"links.post" andParams:params andHttpMethod:@"POST" andDelegate:nil];
+        [facebookPostViewController setCompletionHandler:^(SLComposeViewControllerResult result){
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Cancelled");
+                    
+                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Done");
+                    
+                default:
+                    break;
+            }
+            
+            [self dismissViewControllerAnimated:YES completion:^(void){
+                [self performSelectorOnMainThread:@selector(gotoRootView) withObject:nil waitUntilDone:YES];
+            }];
+        }];
+        
+        [self presentViewController:facebookPostViewController animated:YES completion:nil];
+    } else {
+        [self performSelectorOnMainThread:@selector(gotoRootView) withObject:nil waitUntilDone:YES];
     }
-}
-
-- (void)fbDidLogin {
-    NSLog(@"fbDidLogin");
-    
-    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[appDelegate.facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[appDelegate.facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-}
-
-- (void)fbDidNotLogin:(BOOL)cancelled {
-    NSLog(@"fbDidNotLogin");
-}
-
-- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"request didReceiveResponse");
-}
-
-- (void)request:(FBRequest *)request didLoad:(id)result {
-    NSLog(@"request didLoad");
-}
-
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
 }
 
 @end

@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Twitter/Twitter.h>
-#import <Accounts/Accounts.h>
-#import "FBConnect.h"
+#import <Social/Social.h>
 
-@interface UploadViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, FBSessionDelegate, FBRequestDelegate> {
+@interface UploadViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *tableView;
     
     NSString *tmpImageKey;
@@ -46,8 +44,8 @@
 - (void)hidePendingView;
 
 - (void)displayTextAndExit:(NSString *)text;
-- (void)showTweetView:(NSString*)tweet;
 
-- (void)sendFacebook:(NSString*)url;
+- (void)showTweetView:(NSString*)message url:(NSURL*)url;
+- (void)showFacebookView:(NSString*)message url:(NSURL*)url;
 
 @end

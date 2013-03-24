@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KesiKesiService.h"
-#import "FBConnect.h"
+
+#define SharedAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     // edited image.
@@ -24,8 +25,6 @@
     NSOperationQueue *operationQueue;
     NSString *imageKey;
     KesiKesiService *kService;
-    
-    Facebook *facebook;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -39,7 +38,5 @@
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 @property (nonatomic, retain) NSString *imageKey;
 @property (nonatomic, retain) KesiKesiService *kService;
-
-@property (nonatomic, retain) Facebook *facebook;
 
 @end

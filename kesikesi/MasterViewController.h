@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import <Twitter/Twitter.h>
-#import <Accounts/Accounts.h>
+#import <Social/Social.h>
 #import "ZBarReaderViewController.h"
-#import "FBConnect.h"
 
-@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, FBSessionDelegate, FBRequestDelegate> {
+@interface MasterViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIPickerViewDelegate, MFMailComposeViewControllerDelegate> {
     IBOutlet UIWebView *webView;
     
     IBOutlet UIBarButtonItem *actionButton;
@@ -60,6 +58,7 @@
 
 - (void)displayText:(NSString *)text;
 
-- (void)sendFacebook:(NSString*)url;
+- (void)showTweetView:(NSString*)message url:(NSURL*)url;
+- (void)showFacebookView:(NSString*)message url:(NSURL*)url;
 
 @end

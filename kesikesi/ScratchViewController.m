@@ -171,7 +171,7 @@
         if (TARGET_IPHONE_SIMULATOR) {
             originalImageUrl = [NSString stringWithFormat:@"http://localhost:8089/api/v2/get_original_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_IMAGE_KEY, imageKey] md5sum]];
         } else {
-            originalImageUrl = [NSString stringWithFormat:@"http://www.kesikesi.me/api/v2/get_original_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_IMAGE_KEY, imageKey] md5sum]];
+            originalImageUrl = [NSString stringWithFormat:@"http://kesikesi.atrac613.io/api/v2/get_original_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_IMAGE_KEY, imageKey] md5sum]];
         }
         
         NSURL *url = [NSURL URLWithString:originalImageUrl];
@@ -183,7 +183,7 @@
         if (TARGET_IPHONE_SIMULATOR) {
             maskImageUrl = [NSString stringWithFormat:@"http://localhost:8089/api/v2/get_mask_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_MASK_KEY, imageKey] md5sum]];
         } else {
-            maskImageUrl = [NSString stringWithFormat:@"http://www.kesikesi.me/api/v2/get_mask_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_MASK_KEY, imageKey] md5sum]];
+            maskImageUrl = [NSString stringWithFormat:@"http://kesikesi.atrac613.io/api/v2/get_mask_image?id=%@", [[NSString stringWithFormat:@"%@-%@", SECRET_MASK_KEY, imageKey] md5sum]];
         }
         
         url = [NSURL URLWithString:maskImageUrl];
