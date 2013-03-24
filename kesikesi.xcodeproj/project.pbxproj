@@ -22,10 +22,8 @@
 		060CB51816FEF9B6008B6C8E /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 060CB4F916FEF9B6008B6C8E /* Appirater.m */; };
 		060CB51916FEF9B6008B6C8E /* Appirater.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4FA16FEF9B6008B6C8E /* Appirater.podspec */; };
 		060CB51A16FEF9B6008B6C8E /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4FC16FEF9B6008B6C8E /* AppiraterLocalizable.strings */; };
-		060CB51B16FEF9B6008B6C8E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 060CB50F16FEF9B6008B6C8E /* README.md */; };
 		060CB51E16FEFBAB008B6C8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB51C16FEFBAB008B6C8E /* InfoPlist.strings */; };
 		060CB52016FEFBCE008B6C8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB51F16FEFBCE008B6C8E /* InfoPlist.strings */; };
-		060CB54616FEFF59008B6C8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 060CB52216FEFF58008B6C8E /* .gitignore */; };
 		060CB54716FEFF59008B6C8E /* LINEActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 060CB52516FEFF58008B6C8E /* LINEActivity.m */; };
 		060CB54816FEFF59008B6C8E /* LINEActivityIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 060CB52616FEFF58008B6C8E /* LINEActivityIcon.png */; };
 		060CB54916FEFF59008B6C8E /* LINEActivityIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060CB52716FEFF58008B6C8E /* LINEActivityIcon@2x.png */; };
@@ -883,10 +881,8 @@
 				060CB51716FEF9B6008B6C8E /* .gitignore in Resources */,
 				060CB51916FEF9B6008B6C8E /* Appirater.podspec in Resources */,
 				060CB51A16FEF9B6008B6C8E /* AppiraterLocalizable.strings in Resources */,
-				060CB51B16FEF9B6008B6C8E /* README.md in Resources */,
 				060CB51E16FEFBAB008B6C8E /* InfoPlist.strings in Resources */,
 				060CB52016FEFBCE008B6C8E /* InfoPlist.strings in Resources */,
-				060CB54616FEFF59008B6C8E /* .gitignore in Resources */,
 				060CB54816FEFF59008B6C8E /* LINEActivityIcon.png in Resources */,
 				060CB54916FEFF59008B6C8E /* LINEActivityIcon@2x.png in Resources */,
 				060CB54A16FEFF59008B6C8E /* LINEActivityIcon@2x~ipad.png in Resources */,
