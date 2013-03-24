@@ -89,6 +89,13 @@
     
     NSRange hostResult    = [url rangeOfString:@"www.kesikesi.me"];
     
+    // workaround.
+    if ([url rangeOfString:@"google.com"].location != NSNotFound) {
+        [webView setOpaque:YES];
+    } else {
+        [webView setOpaque:NO];
+    }
+    
     if ([schema isEqualToString:@"ksks"] && hostResult.location != NSNotFound) {
         if ([url rangeOfString:@"page/auth/success"].location != NSNotFound) {
             NSLog(@"Auth Success action detected.");

@@ -376,10 +376,8 @@
     
     // workaround.
     if ([url rangeOfString:@"google.com"].location != NSNotFound) {
-        [webView setBackgroundColor:[UIColor whiteColor]];
         [webView setOpaque:YES];
     } else {
-        [webView setBackgroundColor:[UIColor clearColor]];
         [webView setOpaque:NO];
     }
     
@@ -538,15 +536,16 @@
             NSString *url = [baseUrl absoluteString];
             NSString *path = [baseUrl path];
             
-            NSRange hostResult    = [url rangeOfString:@"www.kesikesi.me"];
+            NSRange hostResult1 = [url rangeOfString:@"www.kesikesi.me"];
+            NSRange hostResult2 = [url rangeOfString:@"kesikesi.atrac613.io"];
             
-            if (hostResult.location != NSNotFound && [[path substringFromIndex:1] length] == 6) {
+            if ((hostResult1.location != NSNotFound || hostResult2.location != NSNotFound) && [[path substringFromIndex:1] length] == 8) {
                 NSLog(@"kesikesi.me Detected.");
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self showPendingView];
                 
-                NSArray *params = [[NSArray alloc] initWithObjects:[path substringFromIndex:1], nil];
+                NSArray *params = [[NSArray alloc] initWithObjects:[path substringFromIndex:3], nil];
                 
                 NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(synchronizeGetMaskModeJsonArray:) object:params];
                 [operation setQueuePriority:NSOperationQueuePriorityHigh];
