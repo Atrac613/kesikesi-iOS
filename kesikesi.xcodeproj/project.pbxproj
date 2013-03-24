@@ -23,6 +23,8 @@
 		060CB51916FEF9B6008B6C8E /* Appirater.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4FA16FEF9B6008B6C8E /* Appirater.podspec */; };
 		060CB51A16FEF9B6008B6C8E /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB4FC16FEF9B6008B6C8E /* AppiraterLocalizable.strings */; };
 		060CB51B16FEF9B6008B6C8E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 060CB50F16FEF9B6008B6C8E /* README.md */; };
+		060CB51E16FEFBAB008B6C8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB51C16FEFBAB008B6C8E /* InfoPlist.strings */; };
+		060CB52016FEFBCE008B6C8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060CB51F16FEFBCE008B6C8E /* InfoPlist.strings */; };
 		061C3AF816EC8CAE0070E60C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */; };
 		061C3AFD16ECBC470070E60C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */; };
 		061C3AFE16ECBC470070E60C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 061C3AFC16ECBC470070E60C /* SVProgressHUD.m */; };
@@ -171,6 +173,8 @@
 		060CB51416FEF9B6008B6C8E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		060CB51516FEF9B6008B6C8E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AppiraterLocalizable.strings"; sourceTree = "<group>"; };
 		060CB51616FEF9B6008B6C8E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AppiraterLocalizable.strings"; sourceTree = "<group>"; };
+		060CB51D16FEFBAB008B6C8E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = InfoPlist.strings; sourceTree = "<group>"; };
+		060CB51F16FEFBCE008B6C8E /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		061C3AF716EC8CAE0070E60C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		061C3AFA16ECBC470070E60C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		061C3AFB16ECBC470070E60C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -640,6 +644,7 @@
 			isa = PBXGroup;
 			children = (
 				0625FC6E14AF832100AF3C04 /* Localizable.strings */,
+				060CB51F16FEFBCE008B6C8E /* InfoPlist.strings */,
 			);
 			name = en.lproj;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				0625FC7214AF832900AF3C04 /* Localizable.strings */,
+				060CB51C16FEFBAB008B6C8E /* InfoPlist.strings */,
 			);
 			name = ja.lproj;
 			path = kesikesi/ja.lproj;
@@ -839,6 +845,8 @@
 				060CB51916FEF9B6008B6C8E /* Appirater.podspec in Resources */,
 				060CB51A16FEF9B6008B6C8E /* AppiraterLocalizable.strings in Resources */,
 				060CB51B16FEF9B6008B6C8E /* README.md in Resources */,
+				060CB51E16FEFBAB008B6C8E /* InfoPlist.strings in Resources */,
+				060CB52016FEFBCE008B6C8E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +956,14 @@
 				060CB51616FEF9B6008B6C8E /* zh-Hant */,
 			);
 			name = AppiraterLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		060CB51C16FEFBAB008B6C8E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				060CB51D16FEFBAB008B6C8E /* ja */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		0625FBF314AF7F4E00AF3C04 /* InfoPlist.strings */ = {
