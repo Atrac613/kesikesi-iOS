@@ -460,9 +460,14 @@
                     break;
             }
             
+            /*
             [self dismissViewControllerAnimated:YES completion:^(void){
                 [self performSelectorOnMainThread:@selector(gotoRootView) withObject:nil waitUntilDone:YES];
             }];
+            */
+            
+            // Workaround
+            [self performSelector:@selector(gotoRootView) withObject:nil afterDelay:0.5];
         }];
         
         [self presentViewController:facebookPostViewController animated:YES completion:nil];
