@@ -165,24 +165,24 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            //[SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"sourceCodeRepository" withValue:nil];
+            [SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"sourceCodeRepository" withValue:nil];
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/Atrac613/kesikesi-iOS"]];
         } else if (indexPath.row == 2) {
-            //[SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"moreApps" withValue:nil];
+            [SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"moreApps" withValue:nil];
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.com/apps/osamunoguchi"]];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            //[SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"thirdPartyNotices" withValue:nil];
+            [SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"thirdPartyNotices" withValue:nil];
             
             ThirdPartyNoticesViewController *thirdPartyNoticesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ThirdPartyNoticesViewController"];
             [self presentViewController:thirdPartyNoticesViewController animated:YES completion:nil];
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            //[SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"rateThisApp" withValue:nil];
+            [SharedAppDelegate.tracker sendEventWithCategory:@"uiAction" withAction:@"buttonPress" withLabel:@"rateThisApp" withValue:nil];
             
             [self presentAppStoreForID:[NSNumber numberWithInt:kAppId] withDelegate:self withURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d", kAppId]]];
         }
